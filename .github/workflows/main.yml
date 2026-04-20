@@ -43,7 +43,7 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Auto-apply labels
-        uses: actions/labeler@v5
+        uses: actions/labeler@v6
         # NOTE: requires a .github/labeler.yml file with appropriate rules
 
 

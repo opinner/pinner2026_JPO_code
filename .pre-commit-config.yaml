@@ -1,4 +1,5 @@
 # See https://docs.astral.sh/uv/guides/integration/pre-commit/
+# 'uvx pre-commit install' needs to be run to have an effect
 repos:
   # Manages uv lockfile and exports dependencies to requirements format
   - repo: https://github.com/astral-sh/uv-pre-commit

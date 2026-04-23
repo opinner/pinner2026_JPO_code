@@ -9,7 +9,7 @@ default:
 # Run ruff check for linting without modifying files
 lint *ARGS:
     uv run --group test ruff check {{ARGS}}
-    marimo check notebooks/*.py   #check marimo files in notebooks, a folder excluded from the ruff linting
+    uv run marimo check notebooks/*.py  #check marimo files in notebooks, a folder excluded from the ruff linting
 
 # Run all the formatting, linting, and testing commands
 qa:

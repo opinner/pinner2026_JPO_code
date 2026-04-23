@@ -34,7 +34,7 @@ dependencies = [
   "tqdm",
   "typer",
   "xarray",
-  "marimo>=0.23.1",
+  "marimo>=0.23.2",
 ]
 
 

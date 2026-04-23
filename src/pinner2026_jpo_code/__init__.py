@@ -11,7 +11,10 @@ from dotenv import find_dotenv, load_dotenv
 
 from .core.utils import save, setup_logger
 
-__all__ = ["save", "setup_logger"]  # as recommended in https://docs.astral.sh/ruff/rules/unused-import/#why-is-this-bad to avoid linting error
+__all__ = [
+    "save",
+    "setup_logger",
+]  # as recommended in https://docs.astral.sh/ruff/rules/unused-import/#why-is-this-bad to avoid linting error
 __version__ = "0.1.0"
 
 

@@ -14,10 +14,10 @@ lint *ARGS:
 # Run all the formatting, linting, and testing commands
 qa:
     uv run --group test ruff check . --fix
-    uv run --group test ruff check --select I --fix . # sort imports
+    uv run --group test ruff check --select I --fix . # sorts imports
     uv run --group test ruff format . 
-    marimo check notebooks/*.py  
-    # uv run --group test ty check .
+    marimo check --fix notebooks/*.py  
+    # uv run --group test ty check . #disabled for now
     uv run --group test pytest .
 
 # Run all the tests, but allow for arguments to be passed

@@ -117,9 +117,7 @@ def add_metadata(func):
         line_number = frame.f_lineno  # - 1   # TODO: <-- check!
         relative_path = os.path.relpath(filename)
         git_commit = (
-            subprocess.check_output(["git", "rev-parse", "--short", "HEAD"])
-            .decode("ascii")
-            .strip()
+            subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
         )
 
         metadata["relative_path"] = relative_path

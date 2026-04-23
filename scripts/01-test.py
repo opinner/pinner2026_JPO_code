@@ -10,6 +10,7 @@
 """The functions below only serve for demonstrating the logger setup. Feel free to delete them
 as well as this docstring once the concept is understood :-)
 """
+
 import logging
 
 from pinner2026_jpo_code import *
@@ -24,7 +25,7 @@ def main():
     logger.info("Calling main function, doing nothing")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     logger = setup_logger()
     main()
     logger.info("Calling function from submodule")

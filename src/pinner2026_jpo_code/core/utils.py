@@ -8,10 +8,9 @@ import functools
 import inspect
 import logging
 import os
-from pathlib import Path
 import subprocess
 import sys
-import pytest
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -60,17 +59,17 @@ def setup_logger(level=None, logfile=True, name="root"):
                                   '(%(name)s:#%(lineno)d): '
                                   '%(message)s'
                                   , datefmt='%Y-%m-%d %H:%M:%S')
-    
+
     if logfile:
         if isinstance(logfile, bool):
             logfile = LOG_DIR / f'{caller_filename}_{os.getpid()}.log'
         elif isinstance(logfile, str):
             logdir = Path(logfile).parents[0]
             if not logdir.exists():
-                raise IOError(f'Log directory {logdir} does not exist.')
+                raise OSError(f'Log directory {logdir} does not exist.')
         logger.logfile = logfile.as_posix()
         print(f"Log file: {logger.logfile}")
-        
+
         filehandler = logging.FileHandler(logfile)
         filehandler.setFormatter(formatter)
         filehandler.setLevel('DEBUG')
@@ -119,23 +118,23 @@ def add_metadata(func):
         metadata['relative_path'] = relative_path
         metadata['line_number'] = line_number
         metadata['git_commit'] = git_commit
-        
+
         obj = args[0] if args else None
         print(f"Object to be saved': {obj}")
         # print("Code context:", frame.f_code.co_name)
         print("Code filename:", filename)
         print("Git commit:", git_commit)
         print("Log metadata_dict: ", metadata)
-        
+
         args = list(args)
         path = Path(args[1])
         suffix = ''
         if kwargs.pop('add_hash', True):
             suffix += f"_{git_commit}"
         args[1] = f'{path.parent}/{path.stem}{suffix}{path.suffix}'
-        
+
         obj_type = str(type(obj)).split("'")[1].split('.')[-1]
-        
+
         msg = f"Save {obj_type} to {args[1]}"
         if kwargs:
             kws = [f"{k}={v}" for (k,v) in kwargs.items()]

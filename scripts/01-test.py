@@ -7,9 +7,9 @@
 # Date:   2026-04-20
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #
-"""The functions below only serve for demonstrating the logger setup. Feel free to delete them 
-as well as this docstring once the concept is understood :-)"""
-from __future__ import absolute_import, division, print_function, with_statement
+"""The functions below only serve for demonstrating the logger setup. Feel free to delete them
+as well as this docstring once the concept is understood :-)
+"""
 import logging
 
 from pinner2026_jpo_code import *

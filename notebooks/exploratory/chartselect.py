@@ -51,14 +51,8 @@ def _(ChartSelect, x_data, y_data):
     def draw_chart(ax, widget):
         if widget.has_selection:
             mask = widget.get_mask(x_data, y_data)
-            ax.scatter(
-                x_data[~mask], y_data[~mask],
-                alpha=0.3, color="gray", s=20
-            )
-            ax.scatter(
-                x_data[mask], y_data[mask],
-                alpha=0.8, color="#ef4444", s=40
-            )
+            ax.scatter(x_data[~mask], y_data[~mask], alpha=0.3, color="gray", s=20)
+            ax.scatter(x_data[mask], y_data[mask], alpha=0.8, color="#ef4444", s=40)
             ax.set_title(f"Selected: {mask.sum()} / {len(x_data)} points")
         else:
             ax.scatter(x_data, y_data, alpha=0.6, color="#3b82f6")

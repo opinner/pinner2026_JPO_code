@@ -35,11 +35,9 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    from sklearn.datasets import load_iris
-
-    from wigglystuff import ParallelCoordinates
-
     import polars as pl
+    from sklearn.datasets import load_iris
+    from wigglystuff import ParallelCoordinates
 
     iris = load_iris()
     df = pl.DataFrame(

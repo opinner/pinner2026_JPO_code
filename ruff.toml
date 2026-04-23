@@ -3,8 +3,8 @@ line-length = 100 # allow longer lines than the default of 88
 indent-width = 4
 
 # Specify which files/directories to check
-include = ["src/**/*.py", "tests/**/*.py", "scripts/**/*.py"]
-exclude = ["docs/", "notebooks/", "build/", ".venv/", "venv/", "htmlcov/"]
+include = ["src/**/*.py", "tests/**/*.py", "scripts/**/*.py", "notebooks/**/*.py", "notebooks/**/*.ipynb"] # now explicitly includes Jupyter Notebook files
+exclude = ["docs/", "build/", ".venv/", "venv/", "htmlcov/", "diagnostics/"] 
 
 [format]
 quote-style = "double"
@@ -14,26 +14,78 @@ docstring-code-format = false
 
 [lint]
 select = [
-    #"D",   # pydocstyle # ignore doc best practices for now
+    # standard rule sets from https://github.com/astral-sh/ruff/discussions/23203#discussioncomment-15856053
     "E",    # pycodestyle errors
-    "W",    # pycodestyle warnings
     "F",    # Pyflakes
-    "I",    # isort
+    "W",    # pycodestyle warnings
     "B",    # flake8-bugbear
-    "UP",   # pyupgrade
+    "C4",   # flake8-comprehensions
+    "PIE",  # flake8-pie
+    "NPY",  # NumPy-specific rules
+    "PD",   # pandas-vet
+    "PLE",  # Pylint Error
+    "I",    # isort
     "C901", # mccabe complexity (replaces flake8 --max-complexity=10)
+    "DTZ",
+    # grab bag of random things
+    "DTZ003", "DTZ004",
+    "G010",
+    "PLW0120", "PLW0129", "PLW0211", "PLW0711", "PLW1509", "PLW2101",
+    "SIM101", "SIM110", "SIM201", "SIM202", "SIM210", "SIM211", "SIM222", "SIM223",
+    "S506",
+    "RET501", "RET502",
+    "RUF006", "RUF007", "RUF008", "RUF013", "RUF016", "RUF017", "RUF030", "RUF061",
+    # "RUF055", only useful in preview mode
+    "RUF102", "RUF200",
+    "COM818", "COM819",
+    "PYI016", "PYI018", "PYI025", "PYI030",
+    "PERF101", "PERF102",
+    "UP001", "UP003", "UP004", "UP006", "UP007", "UP028", "UP034", "UP045",
+    "FURB132",  "FURB162", "FURB163", "FURB171", "FURB181", 
+    # "FURB148", "FURB192", only useful in preview mode
+    # "ISC004", only useful in preview mode
+    "ASYNC251",
+    "TID251",
+    "PT008", "PT012", "PT010", "PT014",
+    "TC005",
+    # for now not included
+    #"D",   # pydocstyle 
+    #"UP",  # pyupgrade
 ]
 
 ignore = [
-    # wild card imports with *
-    # "F403",
-    # "F405", 
-    "E501", # line too long   
+    # "F403", # wild card imports with *
+    # "F405", # wild card imports with *
+    #"E2",     # leave it to black
+    #"E3",     # leave it to black
+    #"E402",   # people usually know what they're doing
+    "E501",   # line too long. black does a good enough job
+    "E701",   # multiple statements on one line. black does a good enough job
+    "E711",   # comparison to None is commonly used with SQLAlchemy
+    "E731",   # lambda expression assignments. these are nice sometimes
+    #"E741",   # variable names like "l". this isn't a huge problem
+    "B011",   # assert false. we don't use python -O
+    "B903",   # interesting, but pretty opinionated, maybe worth it if it gains an autofix
+    "C408",   # we often use dict with keyword args for readability reasons
+    "C409",   # https://github.com/astral-sh/ruff/issues/12912
+    "C419",   # https://github.com/astral-sh/ruff/issues/10838
+    "C420",   # interesting, but i think reads a little worse to most folks. fromkeys predates dict comprehensions
+    "UP035",  # not necessary
+    "NPY002", # useful in theory, but way too many existing hits in practice
+    "PIE790", # there's nothing wrong with pass
+    "SIM108",  # not convinced of the value
+    "ASYNC109",  # not convinced of the value
+    "ASYNC230",  # this is very annoying and often slower 
 ]
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
+[lint.per-file-ignores]
+"notebooks/**/*.py" = [
+    "B018", # marimo notebooks contain lots of standalone expressions
+    "F401"  # removing unused import feels sketchy to me with the unusual structure of marimo notebooks
+] 
 
 [lint.pydocstyle]
 convention = "numpy"

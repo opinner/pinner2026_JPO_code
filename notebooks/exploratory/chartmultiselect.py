@@ -20,7 +20,7 @@ def _():
     import marimo as mo
     import matplotlib.pyplot as plt
     import numpy as np
-    from sklearn.datasets import make_moons, make_blobs
+    from sklearn.datasets import make_blobs, make_moons
     from wigglystuff import ChartMultiSelect
 
     COLORS = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728"]
@@ -70,8 +70,12 @@ def _(
         for c in range(2):
             mask = y_moons == c
             ax.scatter(
-                x_moons[mask], y_moons_coord[mask],
-                alpha=0.6, color=COLORS[c], s=20, label=f"Class {c}",
+                x_moons[mask],
+                y_moons_coord[mask],
+                alpha=0.6,
+                color=COLORS[c],
+                s=20,
+                label=f"Class {c}",
             )
         ax.legend(fontsize=8)
         ax.set_xlabel("X")
@@ -129,7 +133,10 @@ def _(mo):
 @app.cell
 def _(make_blobs, np):
     X_blobs, y_blobs = make_blobs(
-        n_samples=300, centers=3, cluster_std=0.8, random_state=7,
+        n_samples=300,
+        centers=3,
+        cluster_std=0.8,
+        random_state=7,
     )
     x_blobs = X_blobs[:, 0]
     y_blobs_coord = X_blobs[:, 1]
@@ -155,8 +162,12 @@ def _(
         for c in range(3):
             mask = y_blobs == c
             ax.scatter(
-                x_blobs[mask], y_blobs_coord[mask],
-                alpha=0.6, color=COLORS[c], s=20, label=f"Class {c}",
+                x_blobs[mask],
+                y_blobs_coord[mask],
+                alpha=0.6,
+                color=COLORS[c],
+                s=20,
+                label=f"Class {c}",
             )
         ax.legend(fontsize=8)
         ax.grid(True, alpha=0.3)

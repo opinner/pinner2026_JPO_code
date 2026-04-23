@@ -35,42 +35,11 @@ git clone https://github.com/opinner/pinner2026_JPO_code
 
 ### Setup
 
-For getting started in the fastest way possible, there are Make targets provided.
-So, to set up the project, simply run the following commands from the main directory:
 
-First, run
-
-```bash
-make conda-env
-# or alternatively
-make install-requirements
+On windows I need to run the following once, in order to enable the activation of the virtual enviroment
+```shell
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& c:\Users\opinner\Desktop\Python\pinner2026_JPO_code\.venv\Scripts\Activate.ps1)
 ```
-
-to install the required packages either via `conda` or `pip`.
-
-> [!NOTE]
-> I recommend that you use [Conda](https://docs.conda.io/en/latest/miniconda.html) (or, for higher performance, [Mamba](https://mamba.readthedocs.io/)) as a package manager.
-
-Then, — make sure you have activated the virtual environment — run
-
-```bash
-make src-available
-```
-
-to make the project's routines (located in `src`) available for import.
-
-Finally, you can run
-
-```bash
-make tests
-make documentation
-```
-
-to run the tests via `pytest` and build the documentation located in `docs`.
-The latter will create an HTML-rendered version of the documentation in `docs/_build/html/`.
-
-> [!NOTE]
-> If you experience that something is not working (e.g. creating the documentation via `make documentation`) try to perform an update via `mamba update --all`. This might solve the problem.
 
 
 ### Make data available

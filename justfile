@@ -96,7 +96,7 @@ test-gh-actions:
 	@mkdir -p /tmp/artifacts
 	act push --artifact-server-path /tmp/artifacts --container-options "--userns host" --action-offline-mode
 
-# Publish to PyPI (manual alternative to GitHub Actions)
-publish:
-    uv build
-    uv publish
+# # Publish to PyPI (manual alternative to GitHub Actions)
+# publish:
+#     uv build
+#     uv publish

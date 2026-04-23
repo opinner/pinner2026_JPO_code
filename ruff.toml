@@ -28,9 +28,7 @@ ignore = [
     # wild card imports with *
     # "F403",
     # "F405", 
-    "E501", # line too long 
-
-     
+    "E501", # line too long   
 ]
 
 # Allow unused variables when underscore-prefixed.

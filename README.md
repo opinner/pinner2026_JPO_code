@@ -36,7 +36,7 @@ git clone https://github.com/opinner/pinner2026_JPO_code
 ### Setup
 
 
-On windows I need to run the following once, in order to enable the activation of the virtual enviroment
+On windows, I need to run the following once, in order to enable the activation of the virtual enviroment
 ```shell
 (Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& c:\Users\opinner\Desktop\Python\pinner2026_JPO_code\.venv\Scripts\Activate.ps1)
 ```

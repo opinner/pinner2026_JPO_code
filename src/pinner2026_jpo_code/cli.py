@@ -1,5 +1,5 @@
 """CLI script for pinner2026_jpo_code."""
-# ruff: noqa W291, W293
+# ruff: noqa: W291, W293
 
 import typer
 from rich.console import Console

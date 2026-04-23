@@ -11,7 +11,9 @@ from dotenv import find_dotenv, load_dotenv
 
 from .core.utils import save, setup_logger
 
+__all__ = ["save", "setup_logger"]  # as recommended in https://docs.astral.sh/ruff/rules/unused-import/#why-is-this-bad to avoid linting error
 __version__ = "0.1.0"
+
 
 # Make some of the basic directories globally available in your environment
 BASE_DIR = Path(__file__).resolve().parents[2]

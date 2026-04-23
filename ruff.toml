@@ -14,7 +14,7 @@ docstring-code-format = false
 
 [lint]
 select = [
-    "D",    # pydocstyle
+    #"D",   # pydocstyle # ignore doc best practices for now
     "E",    # pycodestyle errors
     "W",    # pycodestyle warnings
     "F",    # Pyflakes
@@ -24,7 +24,14 @@ select = [
     "C901", # mccabe complexity (replaces flake8 --max-complexity=10)
 ]
 
-ignore = ["F403", "F405"]
+ignore = [
+    # wild card imports with *
+    # "F403",
+    # "F405", 
+    "E501", # line too long 
+
+     
+]
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"

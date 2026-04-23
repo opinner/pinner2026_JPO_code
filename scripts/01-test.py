@@ -11,6 +11,8 @@
 as well as this docstring once the concept is understood :-)
 """
 
+# ruff: noqa: F403, F405
+
 import logging
 
 from pinner2026_jpo_code import *

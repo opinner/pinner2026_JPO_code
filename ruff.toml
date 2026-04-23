@@ -1,5 +1,5 @@
 # See https://docs.astral.sh/ruff/ for settings
-line-length = 88
+line-length = 100 # allow longer lines than the default of 88 
 indent-width = 4
 
 # Specify which files/directories to check

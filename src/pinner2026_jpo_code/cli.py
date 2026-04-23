@@ -1,4 +1,5 @@
 """CLI script for pinner2026_jpo_code."""
+# ruff: noqa W291, W293
 
 import typer
 from rich.console import Console
@@ -19,7 +20,7 @@ def main():
   $$$  / \$$$ |$$   ____|$$ |$$ |      $$ |  $$ |$$ | $$ | $$ |$$   ____|
   $$  /   \$$ |\$$$$$$$\ $$ |\$$$$$$$\ \$$$$$$  |$$ | $$ | $$ |\$$$$$$$\ 
   \__/     \__| \_______|\__| \_______| \______/ \__| \__| \__| \_______|
-                                                                      
+                                                                          
     """, style="green")
     # https://patorjk.com/software/taag/
     console.print("Replace this message by putting your code into "

@@ -89,7 +89,7 @@ clean-pyc:
 clean-test:
     @echo "Cleaning test and coverage artifacts..."
     @rm -f .coverage
-    @rm -fr htmlcov/ .pytest_cache
+    @rm -fr diagnostics/htmlcov/ .pytest_cache
 
 # Test github actions locally
 test-gh-actions:

@@ -6,6 +6,8 @@ app = marimo.App(auto_download=["html"])
 
 @app.cell
 def _():
+    import dask
+
     return
 
 

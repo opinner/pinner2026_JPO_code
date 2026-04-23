@@ -1,0 +1,185 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.1",
+    "script_metadata_hash": "b1d6fdb3a3f1d2067b2865b60ca4052e"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "f84cfe3ffaed8d9fd75c03508e2d9dda",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "No module named 'sklearn'",
+          "traceback": null
+        }
+      ],
+      "console": [
+        {
+          "type": "stream",
+          "name": "stderr",
+          "text": "<span class=\"codehilite\"><div class=\"highlight\"><pre><span></span><span class=\"gt\">Traceback (most recent call last):</span>\n  File <span class=\"nb\">&quot;C:\\Users\\opinner\\Desktop\\PythonTest\\pinner2026_JPO_code\\.venv\\Lib\\site-packages\\marimo\\_runtime\\executor.py&quot;</span>, line <span class=\"m\">138</span>, in <span class=\"n\">execute_cell</span>\n<span class=\"w\">    </span><span class=\"n\">exec</span><span class=\"p\">(</span><span class=\"n\">cell</span><span class=\"o\">.</span><span class=\"n\">body</span><span class=\"p\">,</span> <span class=\"n\">glbls</span><span class=\"p\">)</span>\n<span class=\"w\">    </span><span class=\"pm\">~~~~^^^^^^^^^^^^^^^^^^</span>\n  File <span class=\"nb\">&quot;C:\\Users\\opinner\\AppData\\Local\\Temp\\marimo_8480\\__marimo__cell_Hbol_.py&quot;</span>, line <span class=\"m\">4</span>, in <span class=\"n\">&lt;module&gt;</span>\n<span class=\"w\">    </span><span class=\"kn\">from</span><span class=\"w\"> </span><span class=\"nn\">sklearn.datasets</span><span class=\"w\"> </span><span class=\"kn\">import</span> <span class=\"n\">make_moons</span><span class=\"p\">,</span> <span class=\"n\">make_blobs</span>\n<span class=\"gr\">ModuleNotFoundError</span>: <span class=\"n\">No module named &#39;sklearn&#39;</span>\n</pre></div>\n</span>",
+          "mimetype": "application/vnd.marimo+traceback"
+        }
+      ]
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "47a2fde7b957ec45972f244ddc41dbb1",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "4a24c0f32b0b41620e07e837a213125f",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "5a61730645c17a61e736f3766c45da1a",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "474c7d3554634ba98ee6681acf8f8bc8",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "9d2b1ad5bbc16c44d49116dc213c53f2",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "33bc3e6c53b1153ab03dd85376e6ab34",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "76e3c3d356fd97ac0e021465fd0c6ef4",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "9c54c9aef02c75faac6780f7e362247d",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "08eb1dedbcf0e479ea29d40c826d6dde",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "9205fdf19df42962909cb68c151f4489",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "9de2f0ae096702dba1aa88cf53b17c1f",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "c2cae4c618e9ef5809b3d539b7001e26",
+      "outputs": [
+        {
+          "type": "error",
+          "ename": "exception",
+          "evalue": "An ancestor raised an exception (ModuleNotFoundError): ",
+          "traceback": null
+        }
+      ],
+      "console": []
+    }
+  ]
+}

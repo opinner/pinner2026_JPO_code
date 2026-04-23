@@ -1,0 +1,217 @@
+{
+  "version": "1",
+  "metadata": {
+    "marimo_version": "0.23.1",
+    "script_metadata_hash": "318534316d04d96b5aa355b8338d99f2"
+  },
+  "cells": [
+    {
+      "id": "Hbol",
+      "code_hash": "f82c95ffee934ed5d566262355118737",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "MJUe",
+      "code_hash": "c508738e77bd26dec8d91c962c264409",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h1 id=\"chartselect-demo\">ChartSelect Demo</h1>\n<span class=\"paragraph\">Interactive region selection for matplotlib charts.</span>\n<ul>\n<li>Use <strong>Box</strong> or <strong>Lasso</strong> mode to draw a selection</li>\n<li>Click and drag inside the selection to move it</li>\n<li>Click outside the selection to clear it</li>\n</ul></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "vblA",
+      "code_hash": "ed1ff5f1132c2799dda18175b9ab4253",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "bkHC",
+      "code_hash": "7ec253ed24f784a38d53f0eced8b3505",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "lEQa",
+      "code_hash": "18633f9046492020d105f6c93e1ab694",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "PKri",
+      "code_hash": "9d2b1ad5bbc16c44d49116dc213c53f2",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='lEQa-0' random-id='dc45c7cb-a22e-ee0b-9a37-df7f4e363e42'><marimo-anywidget data-initial-value='{&quot;model_id&quot;:&quot;e38bc1bf5624483b8cc9aacdd5080859&quot;}' data-label='null' data-js-url='&quot;./@file/14083-6048-no2Y3M1g.js&quot;' data-js-hash='&quot;1cf459cbac0c188b30b30a1bc4b66493&quot;' data-model-id='&quot;e38bc1bf5624483b8cc9aacdd5080859&quot;'></marimo-anywidget></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Xref",
+      "code_hash": "3663828bda4affa53197c985e97b4b2f",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-callout-output data-html='&quot;&lt;span&gt;Selected 71 points&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;'></marimo-callout-output>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "SFPL",
+      "code_hash": "9ee20f603847edd7c212363e520241ae",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"single-mode-widgets\">Single-Mode Widgets</h2>\n<span class=\"paragraph\">You can restrict a widget to only one selection mode by passing <code>modes=[\"box\"]</code> or <code>modes=[\"lasso\"]</code>.\nWhen only one mode is available, the mode buttons are hidden.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "BYtC",
+      "code_hash": "82d205ebd0956b54ba057779f544e93c",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "RGSE",
+      "code_hash": "51a0ec081164b20d6bcf1b0be0720658",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<div style='display: flex;flex: 1;flex-direction: row;justify-content: flex-start;align-items: normal;flex-wrap: nowrap;gap: 1rem'><marimo-ui-element object-id='RGSE-0' random-id='fa9db180-f858-fd06-fc4a-84ed3b12a59b'><marimo-anywidget data-initial-value='{&quot;model_id&quot;:&quot;c36ed132b1384e34b1c5dd18693b2428&quot;}' data-label='null' data-js-url='&quot;./@file/14083-6048-zn1kaftl.js&quot;' data-js-hash='&quot;1cf459cbac0c188b30b30a1bc4b66493&quot;' data-model-id='&quot;c36ed132b1384e34b1c5dd18693b2428&quot;'></marimo-anywidget></marimo-ui-element><marimo-ui-element object-id='RGSE-1' random-id='c1d0b888-fc7d-5b7d-a80f-d97763615991'><marimo-anywidget data-initial-value='{&quot;model_id&quot;:&quot;6d11b9000bab4d31bab01fb742f73257&quot;}' data-label='null' data-js-url='&quot;./@file/14083-6048-vKfygQnK.js&quot;' data-js-hash='&quot;1cf459cbac0c188b30b30a1bc4b66493&quot;' data-model-id='&quot;6d11b9000bab4d31bab01fb742f73257&quot;'></marimo-anywidget></marimo-ui-element></div>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Kclp",
+      "code_hash": "6c96b3a8e1f3567e4af8f41717006931",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/markdown": "<span class=\"markdown prose dark:prose-invert contents\"><h2 id=\"log-scale-chart\">Log-Scale Chart</h2>\n<span class=\"paragraph\">This section demonstrates ChartSelect on a chart with logarithmic axes.\nDraw a selection and check whether the correct points get highlighted.</span></span>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "emfo",
+      "code_hash": "c5878efa36d14e1a18195afb0877449b",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "Hstk",
+      "code_hash": "c5f55366f088e39d5363c3c1bc6d51e5",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "nWHF",
+      "code_hash": "a824afdd71b14dfccbe5b3837d517304",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/plain": ""
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "iLit",
+      "code_hash": "9a5652daf0140a979693c23d558d7157",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-ui-element object-id='nWHF-0' random-id='908fcaaf-a4c1-aae6-10e4-5f79f07879bb'><marimo-anywidget data-initial-value='{&quot;model_id&quot;:&quot;8537e91eaa874f95b75e718f2b431c82&quot;}' data-label='null' data-js-url='&quot;./@file/14083-6048-6nFxR2DP.js&quot;' data-js-hash='&quot;1cf459cbac0c188b30b30a1bc4b66493&quot;' data-model-id='&quot;8537e91eaa874f95b75e718f2b431c82&quot;'></marimo-anywidget></marimo-ui-element>"
+          }
+        }
+      ],
+      "console": []
+    },
+    {
+      "id": "ZHCJ",
+      "code_hash": "1a5b444de25773106651c2163c7ad840",
+      "outputs": [
+        {
+          "type": "data",
+          "data": {
+            "text/html": "<marimo-callout-output data-html='&quot;&lt;span&gt;Selected 49 points (log chart)&lt;/span&gt;&quot;' data-kind='&quot;neutral&quot;'></marimo-callout-output>"
+          }
+        }
+      ],
+      "console": []
+    }
+  ]
+}

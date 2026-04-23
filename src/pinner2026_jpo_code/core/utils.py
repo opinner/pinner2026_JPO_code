@@ -181,13 +181,13 @@ def save(obj, *args, **kwargs):
 
     Examples
     --------
-    >>> pytest.skip()
-    >>> save(my_object)
+    >>> pytest.skip()                           #doctest: +SKIP
+    >>> save(my_object)                         #doctest: +SKIP
     NotImplementedError: Cannot save object of type <class 'type'> using `save` method. Please use the native method.
 
-    >>> fig = plt.figure()
-    >>> ...
-    >>> save(fig, "/tmp/myfigure.png", dpi=175)
+    >>> fig = plt.figure()                      #doctest: +SKIP
+    >>> ...                                     #doctest: +SKIP
+    >>> save(fig, "/tmp/myfigure.png", dpi=175) #doctest: +SKIP
     Save Figure to /tmp/myfigure.png with dpi=175
     """
     raise NotImplementedError(

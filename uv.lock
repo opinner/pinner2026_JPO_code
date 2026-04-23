@@ -3600,7 +3600,7 @@ requires-dist = [
 dev = [
     { name = "flake8" },
     { name = "isort" },
-    { name = "pytest" },
+    { name = "pytest", specifier = ">=9.0.3" },
     { name = "pytest-cov" },
     { name = "ruff" },
     { name = "safety" },
@@ -3644,7 +3644,7 @@ lint = [
     { name = "ty" },
 ]
 test = [
-    { name = "pytest" },
+    { name = "pytest", specifier = ">=9.0.3" },
     { name = "pytest-cov" },
     { name = "safety" },
 ]

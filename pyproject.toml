@@ -45,7 +45,7 @@ pinner2026_jpo_code = "pinner2026_jpo_code.cli:app"
 [dependency-groups]
 dev = [
   {include-group = "lint"},
-  {include-group = "test"}
+  {include-group = "test"},
 ]
 lint = [
   "flake8",
@@ -54,7 +54,7 @@ lint = [
   "ty",
 ]
 test = [
-  "pytest",
+  "pytest>=9.0.3",
   "pytest-cov",
   "safety",
 ]

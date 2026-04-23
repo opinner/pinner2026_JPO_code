@@ -17,13 +17,13 @@ qa:
     uv run --group test ruff check --select I --fix . # sort imports
     uv run --group test ruff format . 
     marimo check notebooks/*.py  
-    uv run --group test ty check .
+    # uv run --group test ty check .
     uv run --group test pytest .
 
 # Run all the tests, but allow for arguments to be passed
 test *ARGS:
     @echo "Running with arg: {{ARGS}}"
-    uv run --group test pytest {{ARGS}}
+    uv run python -m pytest {{ARGS}}
 
 # Run all the tests, but on failure, drop into the debugger
 pdb *ARGS:

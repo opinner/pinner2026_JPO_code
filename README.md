@@ -77,7 +77,7 @@ plt.style.use(BASE_DIR/'assets/mpl_styles/white_paper.mplstyle')
 
 ## Project Structure
 
-created automatically with `https://markusritschel.github.io/cookiecutter-pyproject`
+created automatically with [opinner/cookiecutter-pyproject](https://github.com/opinner/cookiecutter-pyproject)
 
     ├── assets             <- A place for assets like shapefiles or config files
     │   └── mpl_styles     <- Matplotlib style sheets

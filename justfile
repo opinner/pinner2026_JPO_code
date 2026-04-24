@@ -6,18 +6,18 @@ set windows-shell := ["C:\\Program Files\\Git\\bin\\sh.exe","-c"] # needed so th
 default:
     @just --list
 
-# Run ruff check for linting without modifying files
+# Run ruff check for linting without modifying files or with the --fix flag to modify files
 lint *ARGS:
     uv run --group test ruff check {{ARGS}}
-    uv run marimo check notebooks/*.py  #check marimo files in notebooks, a folder excluded from the ruff linting
-
+    uv run marimo check {{ARGS}} notebooks/*.py  #check marimo files in notebooks
+    
 # Run all the formatting, linting, and testing commands
 qa:
     uv run --group test ruff check . --fix
     uv run --group test ruff check --select I --fix . # sorts imports
     uv run --group test ruff format . 
-    marimo check --fix notebooks/*.py  
-    # uv run --group test ty check . #disabled for now
+    marimo check --fix notebooks/*.py  #check marimo files in notebooks
+    # uv run --group test ty check . #disabled for now, throws too many errors
     uv run --group test pytest .
 
 # Run all the tests, but allow for arguments to be passed

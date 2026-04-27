@@ -1746,8 +1746,8 @@ numpy==2.4.4 ; python_full_version >= '3.11' \
     #   pandas
     #   pinner2026-jpo-code
     #   xarray
-optional-django==0.1.0 \
-    --hash=sha256:77d6b9fb74bda30583e1af4683a39e0af725cea6003252bba75838f4939326c5
+optional-django==0.3.0 \
+    --hash=sha256:2cd56b864ecf88e420aa882209ca7849114f38bc7089344cc9e476ea91aeb010
     # via nodejs
 overrides==7.7.0 ; python_full_version < '3.12' \
     --hash=sha256:55158fa3d93b98cc75299b1e67078ad9003ca27945c76162c1c0766d6f91820a \

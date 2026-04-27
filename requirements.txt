@@ -2758,9 +2758,9 @@ ruff==0.15.11 \
 safety==3.7.0 \
     --hash=sha256:65e71db45eb832e8840e3456333d44c23927423753d5610596a09e909a66d2bf \
     --hash=sha256:daec15a393cafc32b846b7ef93f9c952a1708863e242341ab5bde2e4beabb54e
-safety-schemas==0.0.16 \
-    --hash=sha256:3bb04d11bd4b5cc79f9fa183c658a6a8cf827a9ceec443a5ffa6eed38a50a24e \
-    --hash=sha256:6760515d3fd1e6535b251cd73014bd431d12fe0bfb8b6e8880a9379b5ab7aa44
+safety-schemas==0.0.18 \
+    --hash=sha256:3a127a53baee0a8825306b5d1be48666692cf98baace9785d17bf604e906494a \
+    --hash=sha256:d9307808ee4db8bcdaa8ba255465962d32b87a9e995ded9ad443936dccfc9034
     # via safety
 send2trash==2.1.0 \
     --hash=sha256:0da2f112e6d6bb22de6aa6daa7e144831a4febf2a87261451c4ad849fe9a873c \

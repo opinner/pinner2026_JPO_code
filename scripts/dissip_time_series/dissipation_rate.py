@@ -13,12 +13,14 @@
 # ---
 
 # %%
+import os.path
+
 import equations as eq
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import os.path
+
 import pinner2026_jpo_code
 import pinner2026_jpo_code.helper as helper
 
@@ -88,15 +90,15 @@ DERIVED_DISSIP_FILE = DERIVED_DATA_DIR / "wave_induced_dissipation_rate_time_ser
 if not os.path.isfile(DERIVED_DISSIP_FILE):
     time_stamps = []
     dissipation_rates = []
-    
+
     for index, energy in available_energy_df.iterrows():
         _, indexa, _, indexb, _ = index.split("'")
         mean_N_squared_in_rads = get_mean_N_squared_in_chunk((indexa, indexb), nsquared_data_at_C)
         mean_N_in_rads = np.sqrt(mean_N_squared_in_rads)
-    
+
         assert len(energy) == 1
         energy = energy.iloc[0]
-    
+
         eps = eq.calculate_dissipation_rate(
             coriolis_frequency=coriolis_frequency_in_rads,
             buoyancy_frequency=mean_N_in_rads,
@@ -106,15 +108,15 @@ if not os.path.isfile(DERIVED_DISSIP_FILE):
         b = pd.to_datetime(indexb)
         time_stamps.append(a + (b - a) / 2)  # time stamp in the middle of chunk
         dissipation_rates.append(eps)
-    
+
     dissipation_rate_time_series = pd.Series(index=time_stamps, data=dissipation_rates)
     dissipation_rate_time_series.to_csv(DERIVED_DISSIP_FILE)
     print("dissip saved")
-    
+
 else:
-    dissipation_rate_time_series  = pd.read_csv(DERIVED_DISSIP_FILE, index_col=0)
+    dissipation_rate_time_series = pd.read_csv(DERIVED_DISSIP_FILE, index_col=0)
     print("dissip loaded")
-    
+
 dissipation_rate_time_series
 
 # %%
@@ -173,7 +175,7 @@ ax.legend(
     fontsize=6,
     framealpha=0.9,
 )
-#fig.savefig("dissipation_rate_at_mooring_C.pdf")
+# fig.savefig("dissipation_rate_at_mooring_C.pdf")
 
 # %%
 

@@ -20,6 +20,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import scipy.signal as signal
+
 import pinner2026_jpo_code
 
 # %%
@@ -28,6 +29,7 @@ INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
 
 # %% [markdown]
 # ## Loading Data
+
 
 # %%
 def clean_csv(df):
@@ -135,6 +137,7 @@ dissip_IGW_at_C
 
 # %% [markdown]
 # ## Computation functions
+
 
 # %%
 def cross_corr(x, y):
@@ -320,7 +323,7 @@ ax[1].set_xlabel("days of lag")
 ax[1].set_ylabel("normalized\ncross-correlation / (1)")
 # #ax[1].yaxis.set_major_formatter(mticker.PercentFormatter(decimals=0))
 fig.legend(fontsize=7, loc="upper right", framealpha=0.95)  # , ncols=2)
-#fig.savefig("surface_dissip_corr.pdf")
+# fig.savefig("surface_dissip_corr.pdf")
 
 # %%
 a = hke.iloc[3:]

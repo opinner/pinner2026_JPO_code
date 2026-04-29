@@ -35,6 +35,8 @@ dependencies = [
   "typer",
   "xarray",
   "marimo>=0.23.3",
+  "geopy>=2.4.1",
+  "scipy>=1.15.3",
 ]
 
 

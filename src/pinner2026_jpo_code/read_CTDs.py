@@ -3,7 +3,7 @@ import pandas as pd
 
 def get_PS129_CTD_data():
     # get location of CTD files from the LADCP data files
-    LADCP_DIRECTORY = f"/media/sf_VM_Folder/figures/PS129_Plots/ladcp_profiles/"
+    LADCP_DIRECTORY = "/media/sf_VM_Folder/figures/PS129_Plots/ladcp_profiles/"
     ladcp_paths = sorted(
         helper.IO.get_filepaths_from_directory(LADCP_DIRECTORY, inclusive=(".mat",))
     )
@@ -107,7 +107,7 @@ def load_Joinville_transect_CTDs():
             CTDs = pd.read_csv(path)
 
         # try from parent directory
-        except FileNotFoundError as error:
+        except FileNotFoundError:
             path = "../" + path
             continue
 
@@ -142,7 +142,7 @@ def load_Joinville_transect_CTDs():
     for _ in range(6):  # try to find the right folder only five times to avoid an endless loop
         try:
             CTDs = pd.read_csv(path)
-        except FileNotFoundError as error:
+        except FileNotFoundError:
             path = "../" + path
             continue
 

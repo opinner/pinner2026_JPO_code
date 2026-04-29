@@ -1,5 +1,5 @@
-import scipy.signal as sg  #Package for signal analysis
 import numpy as np
+import scipy.signal as sg  # Package for signal analysis
 
 # def _total_multitaper(complex_velocity,dt = 1/12,P=10):
 #     from multitaper import MTSpec  #using German Prieto's multitaper package, https://github.com/gaprieto/multitaper
@@ -17,35 +17,45 @@ import numpy as np
 #     #if len(S) is odd, the last data point is removed
 #     except ValueError:
 #         total_psd = S[np.where(f<0)][::-1][:-1] + S[np.where(f>0)]
-#     return freq, total_psd   
+#     return freq, total_psd
 
-def total_multitaper(complex_velocity,dt = 1/12,P=10):
+
+def total_multitaper(complex_velocity, dt=1 / 12, P=10):
     """
     In:
       complex_velocity [m/s] technically the unit is arbitrary, the psd will just reflect the original unit
       dt = 1/12 [days]       time duration between measurements, unit is chosen to produce cpd frequency
       P = 10                 time_bandwidth_product, determines the smoothing
-    
+
     Out:
       freq [cpd]
       total_psd [m$^2$/s$^2$ days]
     """
-    import scipy.signal as sg  #Package for signal analysis
     import spectrum
 
-    f, _S = sg.periodogram(complex_velocity-np.mean(complex_velocity), fs=1/dt, return_onesided=False) #fs = sampling frequency (cyclic)
-    psi, eigs = spectrum.mtm.dpss(np.size(complex_velocity), NW=P, k=2*P-1)
-    Zk, _weights, _eigenvalues = spectrum.mtm.pmtm(complex_velocity-np.mean(complex_velocity), k=2*P-1,  NFFT=np.size(complex_velocity), v=psi, e=eigs, method="unity");
-    S=np.mean(np.transpose(np.abs(Zk)**2), axis=1) * dt
-    freq = f[np.where(f>0)]
-    #add positive and negative frequencies to a total PSD
-    #negative side has to be reversed to align with the positive side
+    f, _S = sg.periodogram(
+        complex_velocity - np.mean(complex_velocity), fs=1 / dt, return_onesided=False
+    )  # fs = sampling frequency (cyclic)
+    psi, eigs = spectrum.mtm.dpss(np.size(complex_velocity), NW=P, k=2 * P - 1)
+    Zk, _weights, _eigenvalues = spectrum.mtm.pmtm(
+        complex_velocity - np.mean(complex_velocity),
+        k=2 * P - 1,
+        NFFT=np.size(complex_velocity),
+        v=psi,
+        e=eigs,
+        method="unity",
+    )
+    S = np.mean(np.transpose(np.abs(Zk) ** 2), axis=1) * dt
+    freq = f[np.where(f > 0)]
+    # add positive and negative frequencies to a total PSD
+    # negative side has to be reversed to align with the positive side
     try:
-        total_psd = S[np.where(f<0)][::-1] + S[np.where(f>0)]
-    #if len(S) is odd, the last data point is removed
+        total_psd = S[np.where(f < 0)][::-1] + S[np.where(f > 0)]
+    # if len(S) is odd, the last data point is removed
     except ValueError:
-        total_psd = S[np.where(f<0)][::-1][:-1] + S[np.where(f>0)]
-    return freq, total_psd       
+        total_psd = S[np.where(f < 0)][::-1][:-1] + S[np.where(f > 0)]
+    return freq, total_psd
+
 
 """
 @static_method
@@ -82,16 +92,17 @@ def rotary_multitaper(cvs, dt = 1/12, labels = None, ax = None, **Kwargs):
         
     return f[np.where(f>0)],S[np.where(f>0)]
 """
- 
-def integrate_psd_interval(freq,psd,a = "min", b = "max"):
+
+
+def integrate_psd_interval(freq, psd, a="min", b="max"):
     """
     Integration between a und b using the trapezoidal integration method
     """
-    if a == "min": a = np.min(freq)
-    if b == "max": b = np.max(freq)
-    
-    lower = np.argmin(np.abs(freq-a)).astype(int)
-    upper = np.argmin(np.abs(freq-b)).astype(int)
-    return np.trapz(y = psd[lower:upper], x = freq[lower:upper]) 
+    if a == "min":
+        a = np.min(freq)
+    if b == "max":
+        b = np.max(freq)
 
-
+    lower = np.argmin(np.abs(freq - a)).astype(int)
+    upper = np.argmin(np.abs(freq - b)).astype(int)
+    return np.trapz(y=psd[lower:upper], x=freq[lower:upper])

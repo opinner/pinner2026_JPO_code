@@ -1,7 +1,6 @@
 # -------------------------------------------
 # Plotting
 # -------------------------------------------
-from typing import Dict
 
 import matplotlib as plt
 import numpy as np
@@ -50,14 +49,12 @@ def set_size(width, fraction=1, subplots=(1, 1)):
 
 
 def discrete_cmap(N, base_cmap=None):
-    import matplotlib as pplt
-
     """Create an N-bin discrete colormap from the specified input map
 
     N = 10
     cmap = discrete_cmap(N)
     x = np.random.randint(N, size = (2, 10))*-1
-    
+
     fig, ax = plt.subplots()
     h = ax.scatter(*x, c = x[0], cmap = cmap)
     fig.colorbar(h)

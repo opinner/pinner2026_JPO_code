@@ -18,10 +18,16 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import src.helper
+import os.path
+import pinner2026_jpo_code
+import pinner2026_jpo_code.helper as helper
 
 # %%
-nsquared_data = src.helper.load_pickle("../../derived_data/nsquared_data_at_measurements.pkl")
+INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
+DERIVED_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "derived"
+
+# %%
+nsquared_data = helper.load_pickle(INTERIM_DATA_DIR / "nsquared_data_at_measurements.pkl")
 nsquared_data_at_C = nsquared_data["C"][2350]
 nsquared_data_at_C
 
@@ -57,8 +63,8 @@ def get_mean_N_squared_in_chunk(chunk_time_index, N_squared_series):
 # %%
 
 # %%
-available_energy_df = pd.read_csv("./available_energy.csv", index_col=0)
-available_energy_df
+# available_energy_df = pd.read_csv(INTERIM_DATA_DIR / "available_energy.csv", index_col=0)
+# available_energy_df
 
 # %%
 # for index, energy in available_energy_df.iterrows():
@@ -68,46 +74,51 @@ available_energy_df
 
 # %%
 latitude_at_mooring_C = -63.66
-CORIOLIS_FREQUENCY_IN_CPD = src.helper.get_coriolis_frequency(
+CORIOLIS_FREQUENCY_IN_CPD = helper.get_coriolis_frequency(
     latitude_at_mooring_C, unit="cpd", absolute=True
 )
 CORIOLIS_FREQUENCY_IN_CPD
-coriolis_frequency_in_rads = src.helper.get_coriolis_frequency(
+coriolis_frequency_in_rads = helper.get_coriolis_frequency(
     latitude_at_mooring_C, unit="rad/s", absolute=True
 )
 
 # %%
-time_stamps = []
-dissipation_rates = []
+DERIVED_DISSIP_FILE = DERIVED_DATA_DIR / "wave_induced_dissipation_rate_time_series_at_C.csv"
 
-for index, energy in available_energy_df.iterrows():
-    _, indexa, _, indexb, _ = index.split("'")
-    mean_N_squared_in_rads = get_mean_N_squared_in_chunk((indexa, indexb), nsquared_data_at_C)
-    mean_N_in_rads = np.sqrt(mean_N_squared_in_rads)
-
-    assert len(energy) == 1
-    energy = energy.iloc[0]
-
-    eps = eq.calculate_dissipation_rate(
-        coriolis_frequency=coriolis_frequency_in_rads,
-        buoyancy_frequency=mean_N_in_rads,
-        energy_level=energy,
-    )
-    a = pd.to_datetime(indexa)
-    b = pd.to_datetime(indexb)
-    time_stamps.append(a + (b - a) / 2)  # time stamp in the middle of chunk
-    dissipation_rates.append(eps)
-
-dissipation_rate_time_series = pd.Series(index=time_stamps, data=dissipation_rates)
+if not os.path.isfile(DERIVED_DISSIP_FILE):
+    time_stamps = []
+    dissipation_rates = []
+    
+    for index, energy in available_energy_df.iterrows():
+        _, indexa, _, indexb, _ = index.split("'")
+        mean_N_squared_in_rads = get_mean_N_squared_in_chunk((indexa, indexb), nsquared_data_at_C)
+        mean_N_in_rads = np.sqrt(mean_N_squared_in_rads)
+    
+        assert len(energy) == 1
+        energy = energy.iloc[0]
+    
+        eps = eq.calculate_dissipation_rate(
+            coriolis_frequency=coriolis_frequency_in_rads,
+            buoyancy_frequency=mean_N_in_rads,
+            energy_level=energy,
+        )
+        a = pd.to_datetime(indexa)
+        b = pd.to_datetime(indexb)
+        time_stamps.append(a + (b - a) / 2)  # time stamp in the middle of chunk
+        dissipation_rates.append(eps)
+    
+    dissipation_rate_time_series = pd.Series(index=time_stamps, data=dissipation_rates)
+    dissipation_rate_time_series.to_csv(DERIVED_DISSIP_FILE)
+    print("dissip saved")
+    
+else:
+    dissipation_rate_time_series  = pd.read_csv(DERIVED_DISSIP_FILE, index_col=0)
+    print("dissip loaded")
+    
 dissipation_rate_time_series
 
 # %%
-dissipation_rate_time_series.to_csv(
-    "../../derived_data/wave_induced_dissipation_rate_time_series_at_C.csv"
-)
-
-# %%
-surface_stress = pd.read_csv("../../derived_data/daily_momentum_transfer.csv")
+surface_stress = pd.read_csv(INTERIM_DATA_DIR / "daily_momentum_transfer.csv")
 surface_stress.set_index(pd.to_datetime(surface_stress["Unnamed: 0"]), inplace=True)
 surface_stress.drop("Unnamed: 0", inplace=True, axis="columns")
 # momentum_transfer = momentum_transfer.loc[smoothed_hke.index[0]:]
@@ -130,7 +141,7 @@ l_paper = ax.axhline(
     alpha=0.5,
 )
 l_avrg = ax.axhline(
-    np.mean(dissipation_rates),
+    np.mean(dissipation_rate_time_series),
     ls="-",
     label="$\\langle\\varepsilon_\\text{IGW}(t)\\rangle$",
     color="black",
@@ -138,7 +149,7 @@ l_avrg = ax.axhline(
 )
 (l_eps,) = ax.plot(
     dissipation_rate_time_series.index,
-    dissipation_rate_time_series.values,
+    dissipation_rate_time_series.to_numpy(),
     label="$\\varepsilon_\\text{IGW}(t)$",
     lw=2,
 )
@@ -162,10 +173,9 @@ ax.legend(
     fontsize=6,
     framealpha=0.9,
 )
-fig.savefig("dissipation_rate_at_mooring_C.pdf")
+#fig.savefig("dissipation_rate_at_mooring_C.pdf")
 
 # %%
-break
 
 # %%
 cm = 1 / 2.54  # centimeters in inches
@@ -182,7 +192,7 @@ fig, ax = plt.subplots(1, figsize=(14 * cm, 5 * cm), layout="constrained")
 result_of_Pinner2025 = 1.7809504867405678e-09
 l_paper = ax.axhline(result_of_Pinner2025, color="black", ls="--", label="Pinner2025", alpha=0.5)
 l_avrg = ax.axhline(
-    np.mean(dissipation_rates),
+    np.mean(dissipation_rate_time_series),
     ls="-",
     label="$\\langle\varepsilon_\text{IGW}(t)\rangle$",
     color="black",
@@ -190,7 +200,7 @@ l_avrg = ax.axhline(
 )
 (l_eps,) = ax.plot(
     dissipation_rate_time_series.index,
-    dissipation_rate_time_series.values,
+    dissipation_rate_time_series.to_numpy(),
     label="$\varepsilon_\text{IGW}(t)$",
     lw=2,
 )

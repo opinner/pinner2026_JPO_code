@@ -3,8 +3,15 @@ line-length = 100 # allow longer lines than the default of 88
 indent-width = 4
 
 # Specify which files/directories to check
-include = ["src/**/*.py", "tests/**/*.py", "scripts/**/*.py", "notebooks/**/*.py", "notebooks/**/*.ipynb"] # now explicitly includes Jupyter Notebook files
-exclude = ["docs/", "build/", ".venv/", "venv/", "htmlcov/", "diagnostics/"] 
+include = [
+    "src/**/*.py",
+    "tests/**/*.py",
+    "scripts/**/*.py",
+    "scripts/**/*.ipynb",   # now explicitly includes Jupyter in the scripts folder
+    "notebooks/**/*.py",    # as well in the notebooks folder
+    "notebooks/**/*.ipynb"  # and Marimo notebooks
+] 
+exclude = ["docs/", "build/", ".venv/", "venv/", "diagnostics/"] 
 
 [format]
 quote-style = "double"
@@ -54,6 +61,7 @@ select = [
 ]
 
 ignore = [
+    # left in for now:
     # "F403", # wild card imports with *
     # "F405", # wild card imports with *
     #"E2",     # leave it to black
@@ -85,7 +93,10 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 "notebooks/**/*.py" = [
     "B018", # marimo notebooks contain lots of standalone expressions
     "F401"  # removing unused import feels sketchy to me with the unusual structure of marimo notebooks
-] 
+]
+"**/*.ipynb" = [
+    "B018", # marimo notebooks contain lots of standalone expressions
+]     
 
 [lint.pydocstyle]
 convention = "numpy"

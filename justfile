@@ -9,8 +9,13 @@ default:
 # Run ruff check for linting without modifying files or with the --fix flag to modify files
 lint *ARGS:
     uv run --group test ruff check {{ARGS}}
-    uv run marimo check {{ARGS}} notebooks/*.py  #check marimo files in notebooks
-    
+    uv run marimo check {{ARGS}} #notebooks/*.py  #check marimo files in notebooks
+
+
+format:
+    uv run --group test ruff check --select I --fix . # sorts imports
+    uv run --group test ruff format . 
+
 # Run all the formatting, linting, and testing commands
 qa:
     uv run --group test ruff check . --fix

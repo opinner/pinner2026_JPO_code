@@ -195,9 +195,9 @@ def save(obj, *args, **kwargs):
     )
 
 
-@save.register(plt.Figure)
-def _(fig, path, *args, **kwargs):
-    fig.savefig(path, *args, **kwargs)
+# @save.register(plt.Figure)
+# def _(fig, path, *args, **kwargs):
+#     fig.savefig(path, *args, **kwargs)
 
 
 @save.register(pd.DataFrame)

@@ -38,6 +38,8 @@ dependencies = [
   "geopy>=2.4.1",
   "scipy>=1.15.3",
   "gsw>=3.6.20",
+  "seaborn>=0.13.2",
+  "cmocean>=4.0.3",
 ]
 
 

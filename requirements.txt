@@ -322,6 +322,10 @@ cloudpickle==3.1.2 \
     --hash=sha256:7fda9eb655c9c230dab534f1983763de5835249750e85fbcef43aaa30a9a2414 \
     --hash=sha256:9acb47f6afd73f60dc1df93bb801b472f05ff42fa6c84167d25cb206be1fbf4a
     # via dask
+cmocean==4.0.3 \
+    --hash=sha256:37868399fb5f41b4eac596e69803f9bfaea49946514dfb2e7f48886854250d7c \
+    --hash=sha256:f2fc1d5e349db122ee0c9eac80bba969aa92dd2806548fce58dc8bef962f309e
+    # via pinner2026-jpo-code
 colorama==0.4.6 \
     --hash=sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44 \
     --hash=sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6
@@ -1510,7 +1514,10 @@ matplotlib==3.10.9 \
     --hash=sha256:f4399f64b3e94cd500195490972ae1ee81170df1636fa15364d157d5bdd7b921 \
     --hash=sha256:f76e640a5268850bfda54b5131b1b1941cc685e42c5fa98ed9f2d64038308cba \
     --hash=sha256:fd66508e8c6877d98e586654b608a0456db8d7e8a546eb1e2600efd957302358
-    # via pinner2026-jpo-code
+    # via
+    #   cmocean
+    #   pinner2026-jpo-code
+    #   seaborn
 matplotlib-inline==0.2.1 \
     --hash=sha256:d56ce5156ba6085e00a9d54fead6ed29a9c47e215cd1bba2e976ef39f5710a76 \
     --hash=sha256:e1ee949c340d771fc39e241ea75683deb94762c8fa5f2927ec57c83c4dffa9fe
@@ -1711,12 +1718,14 @@ numpy==2.2.6 ; python_full_version < '3.11' \
     --hash=sha256:fe27749d33bb772c80dcd84ae7e8df2adc920ae8297400dabec45f0dedb3f6de \
     --hash=sha256:fee4236c876c4e8369388054d02d0e9bb84821feb1a64dd59e137e6511a551f8
     # via
+    #   cmocean
     #   contourpy
     #   gsw
     #   matplotlib
     #   pandas
     #   pinner2026-jpo-code
     #   scipy
+    #   seaborn
     #   xarray
 numpy==2.4.4 ; python_full_version >= '3.11' \
     --hash=sha256:07077278157d02f65c43b1b26a3886bce886f95d20aabd11f87932750dfb14ed \
@@ -1792,12 +1801,14 @@ numpy==2.4.4 ; python_full_version >= '3.11' \
     --hash=sha256:fbc356aae7adf9e6336d336b9c8111d390a05df88f1805573ebb0807bd06fd1d \
     --hash=sha256:fcfe2045fd2e8f3cb0ce9d4ba6dba6333b8fa05bb8a4939c908cd43322d14c7e
     # via
+    #   cmocean
     #   contourpy
     #   gsw
     #   matplotlib
     #   pandas
     #   pinner2026-jpo-code
     #   scipy
+    #   seaborn
     #   xarray
 optional-django==0.1.0 \
     --hash=sha256:77d6b9fb74bda30583e1af4683a39e0af725cea6003252bba75838f4939326c5
@@ -1810,6 +1821,7 @@ packaging==26.1 \
     --hash=sha256:5d9c0669c6285e491e0ced2eee587eaf67b670d94a19e94e3984a481aba6802f \
     --hash=sha256:f042152b681c4bfac5cae2742a55e103d27ab2ec0f3d88037136b6bfe7c9c5de
     # via
+    #   cmocean
     #   dask
     #   dparse
     #   ipykernel
@@ -1877,6 +1889,7 @@ pandas==2.3.3 ; python_full_version < '3.11' \
     --hash=sha256:f8bfc0e12dc78f777f323f55c58649591b2cd0c43534e8355c51d3fede5f4dee
     # via
     #   pinner2026-jpo-code
+    #   seaborn
     #   xarray
 pandas==3.0.2 ; python_full_version >= '3.11' \
     --hash=sha256:01f31a546acd5574ef77fe199bc90b55527c225c20ccda6601cf6b0fd5ed597c \
@@ -1929,6 +1942,7 @@ pandas==3.0.2 ; python_full_version >= '3.11' \
     --hash=sha256:f8d68083e49e16b84734eb1a4dcae4259a75c90fb6e2251ab9a00b61120c06ab
     # via
     #   pinner2026-jpo-code
+    #   seaborn
     #   xarray
 pandoc==2.4 \
     --hash=sha256:ecd1f8cbb7f4180c6b5db4a17a7c1a74df519995f5f186ef81ce72a9cbd0dd9a
@@ -2925,6 +2939,10 @@ scipy==1.17.1 ; python_full_version >= '3.11' \
     --hash=sha256:f590cd684941912d10becc07325a3eeb77886fe981415660d9265c4c418d0bea \
     --hash=sha256:f8885db0bc2bffa59d5c1b72fad7a6a92d3e80e7257f967dd81abb553a90d293 \
     --hash=sha256:fcb310ddb270a06114bb64bbe53c94926b943f5b7f0842194d585c65eb4edd76
+    # via pinner2026-jpo-code
+seaborn==0.13.2 \
+    --hash=sha256:636f8336facf092165e27924f223d3c62ca560b1f2bb5dff7ab7fad265361987 \
+    --hash=sha256:93e60a40988f4d65e9f4885df477e2fdaff6b73a9ded434c1ab356dd57eefff7
     # via pinner2026-jpo-code
 send2trash==2.1.0 \
     --hash=sha256:0da2f112e6d6bb22de6aa6daa7e144831a4febf2a87261451c4ad849fe9a873c \

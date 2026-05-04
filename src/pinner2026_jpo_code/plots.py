@@ -289,3 +289,75 @@ def get_region_color_dict(linebreak=False):
             "BL": "#221b38",
         }
     return colors
+
+
+from matplotlib.collections import PolyCollection
+
+# import matplotlib
+
+
+def plot_xy_errorbands(
+    x,
+    y,
+    x_errors,
+    y_errors,
+    x_style: dict = {},
+    y_style: dict = {},
+    x_label: str = "",
+    y_label: str = "",
+    plot_errorbars: bool = False,
+    ax: mpl.axes.Axes = None,
+):
+
+    x_lower = x - x_errors
+    x_upper = x + x_errors
+    y_lower = y - y_errors
+    y_upper = y + y_errors
+
+    if ax is None:
+        fig, ax = plt.subplots(1)
+
+    if plot_errorbars:
+        ax.errorbar(
+            x,
+            y,
+            xerr=x_errors,
+            yerr=y_errors,
+            fmt="o",
+            linestyle="None",
+            color=x_style["edgecolor"],
+            label="points",
+        )
+
+    # Build a list of quads between consecutive points
+    verts = [
+        [
+            (x_upper[i], y[i]),
+            (x_upper[i + 1], y[i + 1]),
+            (x_lower[i + 1], y[i + 1]),
+            (x_lower[i], y[i]),
+        ]
+        for i in range(len(x) - 1)
+    ]
+
+    # verts = [
+    #     [(x_upper[i], y[i]),
+    #     (x[i+1], y_lower[i+1]),
+    #     (x_upper[i+1], y[i+1]),
+    #     (x[i+1], y_upper[i+1]),
+    #     (x_lower[i+1], y[i+1]),
+    #     (x[i], y_upper[i]),
+    #     (x_lower[i], y[i]),
+    #     (x[i], y_lower[i])]
+    #     for i in range(len(x)-1)
+    # ]
+    # unique_verts
+    # for vert in verts:
+    # unique = np.array(list({tuple(a) for a in arr}))
+
+    poly = PolyCollection(
+        verts, **x_style
+    )  # facecolors=["seagreen"], alpha=0.3, edgecolors="none")
+    ax.add_collection(poly)
+
+    ax.fill_between(x, y_lower, y_upper, **y_style, label=y_label)

@@ -1,11 +1,18 @@
 import multitaper as mt  # Prieto 2022 https://github.com/gaprieto/multitaper
+import numpy as np
 import scipy.signal as sg  # signal analysis
+
+raise NotImplementedError
+# Disable linting in here, as the file is unfinished and only here for archiving purposes
+# ruff: noqa
 
 fs = 1 / dt
 
 
 def multitaper(complex_velocity, product_bandwidth, sampling_frequency):
-    """ """
+
+    raise NotImplementedError
+    cv = complex_velocity
     fo, So = sg.periodogram(cv - np.mean(cv), fs=1 / dt)  # fs = sampling frequency (cyclic)
 
     # using somewhat different settings than the default for MTSpec
@@ -15,15 +22,14 @@ def multitaper(complex_velocity, product_bandwidth, sampling_frequency):
     P = 16
     spec = mt.MTSpec(cv - np.mean(cv), nw=P, dt=dt, iadapt=1, nfft=len(cv))
     # vars(spec)  #use this to inspect the spec object output by MTSpec
-    S = np.ravel(spec.spec)
-    f = np.ravel(spec.freq)
+    np.ravel(spec.spec)
+    np.ravel(spec.freq)
 
     # verify variance is approximately recovered
     # use numpy is_approximately equal
     # TODO assert f[1]-f[0])*np.sum(S) is close to np.var(cv)
 
     # print((f[1]-f[0])*np.sum(S)) #verify variance is approximately recovered
-    raise NotImplementedError
 
 
 def get_total_psd(S, f):
@@ -73,6 +79,8 @@ def mconf(K, gamma, str):
 
     taken from http://jmlilly.net/course/labs/html/SpectralAnalysis-Python.html
     """
+
+    raise NotImplementedError
 
     dx = 0.0001
     # Compute pdf symmetrically about unity
@@ -152,19 +160,19 @@ class Spectrum:
 
     """
     @static_method
-    def rotary_multitaper(cvs, dt = 1/12, labels = None, ax = None, **Kwargs):    
-        #TODO TODO 
+    def rotary_multitaper(cvs, dt = 1/12, labels = None, ax = None, **Kwargs):
+        #TODO TODO
         if ax == None:
             fig,ax = plt.subplots(1)
             ax.set_xlabel('Frequency (cycles/day)')
             ax.set_ylabel('PSD (cm$^2$/s$^2$ days)')
-        
+
         if not isinstance(cvs, list):
             cvs = [cvs]
-        
+
         for i,cv in enumerate(cvs):
-        
-            cv = cv[~np.isnan(cv)] #remove 
+
+            cv = cv[~np.isnan(cv)] #remove
 
             f, _S = sg.periodogram(cv-np.mean(cv), fs=1/dt) #fs = sampling frequency (cyclic)
 
@@ -182,7 +190,7 @@ class Spectrum:
             else:
                 ax.loglog(f[np.where(f>0)],S[np.where(f>0)], **Kwargs)
 
-            
+
         return f[np.where(f>0)],S[np.where(f>0)]
     """
 
@@ -198,4 +206,4 @@ class Spectrum:
 
         lower = np.argmin(np.abs(freq - a)).astype(int)
         upper = np.argmin(np.abs(freq - b)).astype(int)
-        return np.trapz(y=psd[lower:upper], x=freq[lower:upper])
+        return np.trapezoid(y=psd[lower:upper], x=freq[lower:upper])

@@ -47,11 +47,11 @@ def get_filepaths_from_directory(directory="/media/sf_VM_Folder/data", inclusive
     def all_files(folder):
         import os
 
-        for path, dirs, files in os.walk(folder):
+        for path, _dirs, files in os.walk(folder):
             for f in files:
                 yield os.path.join(path, f)
 
-    list_of_files = [f for f in all_files(directory)]
+    list_of_files = list(all_files(directory))
 
     return [f for f in list_of_files if f.endswith(inclusive) and not f.endswith(exclusive)]
 
@@ -124,7 +124,7 @@ def get_tidal_frequencies_in_hours(tide_type="semidiurnal"):
 
 def get_coriolis_frequency(lat, unit="rad/s", absolute=False):
 
-    if absolute == True:
+    if absolute:
         lat = abs(lat)
 
     Omega = 7.2921 * 1e-5  # unit: rad/s
@@ -262,7 +262,7 @@ def _axstyle(
     # find out background color - if this is set to ayu dark, adjust some axis
     # colors
     figcolor = plt.rcParams["figure.facecolor"]
-    dark = True if figcolor == "#0d1318" else False
+    dark = figcolor == "#0d1318"
 
     if ax is None:
         ax = plt.gca()
@@ -340,6 +340,6 @@ def _axstyle(
     try:
         plt.setp(ax.get_legend().get_texts(), fontsize=fontsize)
     except AttributeError:
-        noleg = 1
+        pass
 
     return ax

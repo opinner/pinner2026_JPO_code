@@ -34,8 +34,8 @@ INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
 # %%
 def clean_csv(df):
     if "Unnamed: 0" in df.columns:
-        df.set_index(pd.to_datetime(df["Unnamed: 0"]), inplace=True)
-        df.drop("Unnamed: 0", inplace=True, axis="columns")
+        df = df.set_index(pd.to_datetime(df["Unnamed: 0"]))
+        df = df.drop("Unnamed: 0", axis="columns")
     # Convert back to complex numbers
     # https://stackoverflow.com/questions/18919699/python-pandas-complex-number
     # for i,col in enumerate(df.columns):
@@ -61,9 +61,9 @@ def smooth(array, length):
 
 # %%
 surface_stress = pd.read_csv(INTERIM_DATA_DIR / "daily_momentum_transfer.csv")
-surface_stress.set_index(pd.to_datetime(surface_stress["Unnamed: 0"]), inplace=True)
-surface_stress.drop("Unnamed: 0", inplace=True, axis="columns")
-for i, col in enumerate(surface_stress.columns):
+surface_stress = surface_stress.set_index(pd.to_datetime(surface_stress["Unnamed: 0"]))
+surface_stress = surface_stress.drop("Unnamed: 0", axis="columns")
+for _i, col in enumerate(surface_stress.columns):
     surface_stress[col] = surface_stress[col].str.replace("i", "j").apply(lambda x: complex(x))
 surface_stress = surface_stress.abs()
 surface_stress_at_C = pd.Series(
@@ -74,8 +74,8 @@ print(surface_stress_at_C.iloc[8:-76])
 
 # %%
 velocity = pd.read_csv(INTERIM_DATA_DIR / "velo_at_C.csv")
-velocity.set_index(pd.to_datetime(velocity["time_2350"]), inplace=True)
-velocity.drop("time_2350", inplace=True, axis="columns")
+velocity = velocity.set_index(pd.to_datetime(velocity["time_2350"]))
+velocity = velocity.drop("time_2350", axis="columns")
 velocity["2350"] = velocity["2350"].apply(lambda x: complex(x))
 # 5 day resampled, absolute value and time shifted, as resample used the left bin edge for labeling
 mean_flow = (
@@ -130,8 +130,8 @@ hke = hke["C", "2350"]
 dissip_IGW_at_C = pd.read_csv(
     INTERIM_DATA_DIR / "wave_induced_dissipation_rate_time_series_at_C.csv"
 )
-dissip_IGW_at_C.set_index(pd.to_datetime(dissip_IGW_at_C["Unnamed: 0"]), inplace=True)
-dissip_IGW_at_C.drop("Unnamed: 0", inplace=True, axis="columns")
+dissip_IGW_at_C = dissip_IGW_at_C.set_index(pd.to_datetime(dissip_IGW_at_C["Unnamed: 0"]))
+dissip_IGW_at_C = dissip_IGW_at_C.drop("Unnamed: 0", axis="columns")
 dissip_IGW_at_C
 
 
@@ -142,7 +142,7 @@ dissip_IGW_at_C
 # %%
 def cross_corr(x, y):
     "Plot cross-correlation (same) between two signals."
-    N = max(len(x), len(y))
+    max(len(x), len(y))
     n = min(len(x), len(y))
 
     lags = signal.correlation_lags(len(x), len(y), mode="same")
@@ -169,14 +169,18 @@ def plot_xy_errorbands(
     y,
     x_errors,
     y_errors,
-    x_style: dict = {},
-    y_style: dict = {},
+    x_style: dict | None = None,
+    y_style: dict | None = None,
     x_label: str = "",
     y_label: str = "",
     plot_errorbars: bool = False,
     ax: mpl.axes.Axes = None,
 ):
 
+    if y_style is None:
+        y_style = {}
+    if x_style is None:
+        x_style = {}
     x_lower = x - x_errors
     x_upper = x + x_errors
     y_lower = y - y_errors

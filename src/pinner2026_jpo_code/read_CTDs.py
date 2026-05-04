@@ -1,4 +1,14 @@
+import datetime
+
+import gsw
+import helper
+import numpy as np
 import pandas as pd
+import scipy.io as sio
+from ctd_cast import CTDCast
+from location import Location
+
+# from mooring import Mooring
 
 
 def get_PS129_CTD_data():
@@ -22,7 +32,7 @@ def get_PS129_CTD_data():
         lon = np.round(np.squeeze(data["lon"]), 3)
         ctd_locations.append(Location(lat=lat, lon=lon))
         time_stamp = datetime.datetime(
-            *map(int, np.squeeze(data["date"]))
+            *map(int, np.squeeze(data["date"])), tzinfo=datetime.UTC
         )  # convert list of values to datetime object
         ctd_timestamps.append(time_stamp)
 
@@ -129,10 +139,10 @@ def load_Joinville_transect_CTDs():
                 "Expedition",
                 "Neutral density [kg m^-3]",
             ]
-            for i, j in zip(CTDs.columns, new_columns):
+            for i, j in zip(CTDs.columns, new_columns, strict=False):
                 print(i, "\t", j)
             CTDs.columns = new_columns
-            CTDs.set_index("index", inplace=True)
+            CTDs = CTDs.set_index("index")
             return CTDs
 
     print("CTD data including neutral densities could not be found")

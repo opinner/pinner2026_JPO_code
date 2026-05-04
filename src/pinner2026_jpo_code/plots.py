@@ -67,7 +67,7 @@ def discrete_cmap(N, base_cmap=None):
 
     base = plt.cm.get_cmap(base_cmap)
     color_list = base(np.linspace(0, 1, N, 0))
-    cmap_name = base.name + str(N)
+    base.name + str(N)
     return plt.cm.colors.ListedColormap(color_list, color_list, N)
 
 
@@ -191,7 +191,7 @@ class Plot:
         # find out background color - if this is set to ayu dark, adjust some axis
         # colors
         figcolor = plt.rcParams["figure.facecolor"]
-        dark = True if figcolor == "#0d1318" else False
+        dark = figcolor == "#0d1318"
 
         if ax is None:
             ax = plt.gca()
@@ -269,7 +269,7 @@ class Plot:
         try:
             plt.setp(ax.get_legend().get_texts(), fontsize=fontsize)
         except AttributeError:
-            noleg = 1
+            pass
 
 
 def get_region_color_dict(linebreak=False):
@@ -280,7 +280,7 @@ def get_region_color_dict(linebreak=False):
         "IL": "#145867",
         "BL": "#221b38",
     }
-    if linebreak == True:
+    if linebreak:
         colors: dict[str, str] = {
             "air": "#eeedf3",
             "shelf": "#b7b38b",

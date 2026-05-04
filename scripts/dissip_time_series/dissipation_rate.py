@@ -121,10 +121,10 @@ dissipation_rate_time_series
 
 # %%
 surface_stress = pd.read_csv(INTERIM_DATA_DIR / "daily_momentum_transfer.csv")
-surface_stress.set_index(pd.to_datetime(surface_stress["Unnamed: 0"]), inplace=True)
-surface_stress.drop("Unnamed: 0", inplace=True, axis="columns")
+surface_stress = surface_stress.set_index(pd.to_datetime(surface_stress["Unnamed: 0"]))
+surface_stress = surface_stress.drop("Unnamed: 0", axis="columns")
 # momentum_transfer = momentum_transfer.loc[smoothed_hke.index[0]:]
-for i, col in enumerate(surface_stress.columns):
+for _i, col in enumerate(surface_stress.columns):
     surface_stress[col] = surface_stress[col].str.replace("i", "j").apply(lambda x: complex(x))
 surface_stress["C"]
 

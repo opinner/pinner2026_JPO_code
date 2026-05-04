@@ -838,6 +838,47 @@ greenlet==3.4.0 ; platform_machine == 'AMD64' or platform_machine == 'WIN32' or 
     --hash=sha256:f8296d4e2b92af34ebde81085a01690f26a51eb9ac09a0fcadb331eb36dbc802 \
     --hash=sha256:f82cb6cddc27dd81c96b1506f4aa7def15070c3b2a67d4e46fd19016aacce6cf
     # via sqlalchemy
+gsw==3.6.20 ; python_full_version < '3.11' \
+    --hash=sha256:0fef17564d99d752027b28f5ca2c316f19344b63f1c265cf6af857291cc77837 \
+    --hash=sha256:208d6c04080cde925a66e186236554527f0bf6d1c6753709c79142f675b21ea1 \
+    --hash=sha256:2629b359afae7f31c7ff07d283c89bf15e0412d4c86bee798db470ea4a2e25ec \
+    --hash=sha256:2b5a143b2993ac150c5b3cb7edf942d1376a20abbc57cc3d8ec4a5a430632890 \
+    --hash=sha256:33ca2560378d1719fa49dcd380ce0c4a261b01cbd2aa865a3c6c99bfb90b5853 \
+    --hash=sha256:41aa99a9d0793619eccc48f66fc99f8b9eebbd174f77a0ca43b16fa12929cd6d \
+    --hash=sha256:420ce22fe65da3342f69707f5f2315725d22190a878352733db65b53fb95e3eb \
+    --hash=sha256:46736fae069b84c229339f027a8fad77f05b7f6af03b4c96ca55eed1177150da \
+    --hash=sha256:4ef77957249feac27c3a16075d5391452fcbab84453c8f90530f176fe9cc7d57 \
+    --hash=sha256:5338bd8de4375f30b75a49c4742000d9d0a14019c6f81900e9b1af33c13cf013 \
+    --hash=sha256:5ddd1fbb686bb17682ffcc4b7e933a7393f6bc0b68e4766de1dae4d5059a5775 \
+    --hash=sha256:60f5242634a7724f7036fd572e61146c98650222c6ae58be1f0c6cbfc7787c95 \
+    --hash=sha256:719d1983bd97991e4e44c1c725322269fc7019c29abc7a641e6a676f1a54f54e \
+    --hash=sha256:80d3f367e6cb1eeb0f12092b799c16406db4eedb835fd45698fb9332f527255d \
+    --hash=sha256:83329c31425777503b6d70e043b83988abebd91ce99d90ba6963367657df3f66 \
+    --hash=sha256:857a1f0804980186514a0690e0f7dbdffd15a17059649771f3d3a84771e8fb8f \
+    --hash=sha256:8f19d4b9349f86afcaace8f167abc77ff7297685e70a55920bf7f2ce07a4af90 \
+    --hash=sha256:9656dcb42ddeee8134f2bb6d7394928b0b8629634c9e223f9cce7a3c7309597c \
+    --hash=sha256:9fd592d85d46e2b6fe44c0121a7e8427af13a08c00477f699536c0a600500e0b \
+    --hash=sha256:a0e810c3c5d920d9e79b199f518c9f4b92f4825ea95f35b9e5d2180f1e7f7fc4 \
+    --hash=sha256:a7111e3a7f4f2d8d21ed34efdec72c5b515c28f94ac074893cfbf9b9bdf3a1a1 \
+    --hash=sha256:a9d229413fa42a668d010f7c2ddf98b7b603f2c6d6e10dd2aab60136e0c540a3 \
+    --hash=sha256:beca69ca0c9547d3a3449d71c240dd595f3e2b0c39706f9e411a8b798fb05fa0 \
+    --hash=sha256:c79bbc867ec9e0f513c9e3fed255029e59970adf6cb60707235cbaa3b6d33daf \
+    --hash=sha256:cbe69ceef354381bd3c185effcb52b81b0513bd98c5ba98b3ceb341ca6cb7218 \
+    --hash=sha256:cf86a78eeb59eabba184c188c7551ace3dc4745cfe816085ca7b2c223ae8c007 \
+    --hash=sha256:d64979970979c5f7aa413ff6047242d0e649c0b898249282c203804754bac848 \
+    --hash=sha256:e528cd6563fdc09b244387bfebf131b01199c20ac248f4e5b4eaf00cded1abe6 \
+    --hash=sha256:ee18181480d29c0fb306b290a6cf0add27d4625c77547d5be75b39850530f759 \
+    --hash=sha256:ef8d15394b53969741a8e79a378e332a4e84444871d21966f5f22bcdf3141c82 \
+    --hash=sha256:f17a59aa9b5e1231ca71b2230b5526f3b8bc5b617e3ae4e5443c079435d77541
+    # via pinner2026-jpo-code
+gsw==3.6.21 ; python_full_version >= '3.11' \
+    --hash=sha256:200dc7bc89195608b16d9a6d24cfe02f33df79ace68309845180000975c82c03 \
+    --hash=sha256:345d20cc0c58c21ccd3754e3695620a988acf1d9b548cb503071247a904fac80 \
+    --hash=sha256:4d0ef1d7490a33a4a69ca3b7d6b60f709c7c4b6c05d31d0286de706835219ac7 \
+    --hash=sha256:59562f4b4cf4abaeab8058b6d90d05fcacc1d027e4d299dabc7ef21d8b6a516a \
+    --hash=sha256:6e0609d374916b4393484b9c7b32666d36dda74d900a40d19c766484ac295efa \
+    --hash=sha256:cc504b9b77e89e50200248d086cd4e2432ee11fda2308b8cdd1e10d70338cbc2
+    # via pinner2026-jpo-code
 h11==0.16.0 \
     --hash=sha256:4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1 \
     --hash=sha256:63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86
@@ -1671,6 +1712,7 @@ numpy==2.2.6 ; python_full_version < '3.11' \
     --hash=sha256:fee4236c876c4e8369388054d02d0e9bb84821feb1a64dd59e137e6511a551f8
     # via
     #   contourpy
+    #   gsw
     #   matplotlib
     #   pandas
     #   pinner2026-jpo-code
@@ -1751,6 +1793,7 @@ numpy==2.4.4 ; python_full_version >= '3.11' \
     --hash=sha256:fcfe2045fd2e8f3cb0ce9d4ba6dba6333b8fa05bb8a4939c908cd43322d14c7e
     # via
     #   contourpy
+    #   gsw
     #   matplotlib
     #   pandas
     #   pinner2026-jpo-code

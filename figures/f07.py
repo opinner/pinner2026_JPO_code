@@ -2,6 +2,9 @@ import matplotlib as plt
 import matplotlib.dates as mdates
 import numpy as np
 
+INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
+DERIVED_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "derived"
+
 cm = 1 / 2.54  # centimeters in inches
 plt.rcParams.update({"figure.facecolor": "white", "savefig.facecolor": "white", "font.size": 9})
 

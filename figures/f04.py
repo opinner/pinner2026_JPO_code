@@ -5,10 +5,12 @@ import seaborn as sns
 import cmocean
 import pandas as pd
 import scipy.signal as signal
+from pathlib import Path
 import pinner2026_jpo_code
 
-INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
-DERIVED_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "derived"
+INTERIM_DATA_DIR: Path = pinner2026_jpo_code.DATA_DIR / "interim"
+DERIVED_DATA_DIR: Path = pinner2026_jpo_code.DATA_DIR / "derived"
+FIGURE_DIR: Path = pinner2026_jpo_code.FIGURE_DIR
 
 cm = 1 / 2.54  # centimeters in inches
 TWO_COLUMN_WIDTH = 12
@@ -101,5 +103,5 @@ sec2.tick_params("x", length=40, width=1)
 ax.tick_params(axis="x", labelrotation=90)
 # ax.set_title("Pairwise Correlation")
 ax.text(-0.08, -0.08, "depths (m)", transform=ax.transAxes, ha="center", va="center", rotation=45)
-fig.savefig(pinner2026_jpo_code.FIGURE_DIR / "f04_HKE_pair_correlation.pdf")
+fig.savefig(FIGURE_DIR / "f04_HKE_pair_correlation.pdf")
 plt.show()

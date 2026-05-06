@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import numpy as np
 
@@ -42,7 +42,8 @@ def plot_corr_with_error_bands(x, y, N, axis, label, color, plot_errorbars=False
 # y_style = {"facecolor":"xkcd:pale green", "edgecolor":"k", "alpha":0.9, "linewidth":0}
 # x_style = {"facecolor":"xkcd:pale green", "edgecolor":"k", "linewidth":0}
 
-x = 5 * lags_dissip_hke
+lag_time_step_in_days = 5
+x = lags_dissip_hke * lag_time_step_in_days
 y = corr_dissip_hke
 N = len(dissip_hke_pair["hke"])
 label = "$\\varepsilon_\\mathrm{IGW} \\star \\text{HKE}$"

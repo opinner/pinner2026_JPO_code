@@ -20,16 +20,16 @@ plt.rcParams.update({"figure.facecolor": "white", "savefig.facecolor": "white", 
 
 def smooth(array, length):
     window = signal.windows.hann(length)  # construct Hanning window
-    smoothed = signal.convolve(array, window, mode="same") / np.sum(
-        window
-    )  # smooth by convolving speed with window
+    # smooth by convolving speed with window
+    smoothed = signal.convolve(array, window, mode="same") / np.sum(window)
     return smoothed
 
 
 hke = pd.read_csv(INTERIM_DATA_DIR / "HKE.csv", index_col=0, header=[0, 1])
 hke.index = pd.to_datetime(hke.index).floor("D")
 
-# focus only on the seasonal variability
+# to focus only on the seasonal variability
+# we smooth over 5 data points
 smoothed_hke = hke.apply(smooth, args=(5,))
 
 

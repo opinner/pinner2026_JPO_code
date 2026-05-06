@@ -1,104 +1,119 @@
-import matplotlib as plt
-import matplotlib.ticker as mticker
-import numpy as np
+from pathlib import Path
 
-from pinner2026_jpo_code.plots import plot_xy_errorbands
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import scipy.signal as signal
+
+import pinner2026_jpo_code
+import pinner2026_jpo_code.helper as helper
+
+INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
+DERIVED_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "derived"
+FIGURE_DIR: Path = pinner2026_jpo_code.FIGURE_DIR
+
+
+# LOADING DATA
+dissipation_rate_time_series = pd.read_csv(
+    DERIVED_DATA_DIR / "wave_induced_dissipation_rate_time_series_at_C.csv", index_col=0
+)
+dissipation_rate_time_series = dissipation_rate_time_series.set_index(
+    pd.to_datetime(dissipation_rate_time_series.index)
+).squeeze()
+
+surface_stress = pd.read_csv(INTERIM_DATA_DIR / "daily_momentum_transfer.csv")
+surface_stress = surface_stress.set_index(pd.to_datetime(surface_stress["Unnamed: 0"]))
+surface_stress = surface_stress.drop("Unnamed: 0", axis="columns")
+for _i, col in enumerate(surface_stress.columns):
+    surface_stress[col] = surface_stress[col].str.replace("i", "j").apply(lambda x: complex(x))
+surface_stress_at_C = surface_stress["C"]
+
+inertial_wind = pd.read_csv(INTERIM_DATA_DIR / "inertial_wind.csv")
+inertial_wind = inertial_wind.set_index(pd.to_datetime(inertial_wind["Unnamed: 0"]))
+inertial_wind = inertial_wind.drop("Unnamed: 0", axis="columns")
+for _i, col in enumerate(surface_stress.columns):
+    inertial_wind[col] = inertial_wind[col].str.replace("i", "j").apply(lambda x: complex(x))
+inertial_wind_at_C = inertial_wind["C"]
+inertial_wind_at_C = inertial_wind_at_C.loc[: dissipation_rate_time_series.index[-1]]
 
 cm = 1 / 2.54  # centimeters in inches
-plt.rcParams.update({"figure.facecolor": "white", "savefig.facecolor": "white", "font.size": 9})
+plt.rcParams.update({"figure.facecolor": "white", "savefig.facecolor": "white", "font.size": 7})
 
-fig, ax = plt.subplots(ncols=1, figsize=(9 * cm, 6 * cm), layout="constrained")
-ax = ["", ax]
-ax[1].axhline(0, color="k", alpha=0.3, ls=":")
-ax[1].axvline(0, color="k", alpha=0.5, ls="--")
+fig, ax = plt.subplots(1, figsize=(14 * cm, 5 * cm), layout="constrained")
 
-ax[1].xaxis.set_major_locator(mticker.FixedLocator(np.arange(-100, 150, 50)))
-ax[1].xaxis.set_minor_locator(mticker.FixedLocator(np.arange(-100, 110, 25)))
+result_of_Pinner2025 = 1.7809504867405678e-09
+l_paper = ax.axhline(
+    result_of_Pinner2025,
+    color="black",
+    ls="--",
+    label="$\\overline{\\varepsilon_\\text{IGW}}$",
+    alpha=0.5,
+)
+
+l_avrg = ax.axhline(
+    np.mean(dissipation_rate_time_series),
+    ls="-",
+    label="$\\langle\\varepsilon_\\text{IGW}(t)\\rangle$",
+    color="black",
+    alpha=0.5,
+)
+
+(l_eps,) = ax.plot(
+    dissipation_rate_time_series.index,
+    dissipation_rate_time_series.to_numpy(),
+    label="$\\varepsilon_\\text{IGW}(t)$",
+    lw=2,
+)
+
+ax.set_ylabel("wave-induced dissipation rate\n$\\varepsilon_{\\mathrm{IGW}}\\,$(W$\\,$kg$^{-1}$)")
+
+locator = mdates.AutoDateLocator(minticks=8, maxticks=12)
+formatter = mdates.ConciseDateFormatter(locator)
+ax.xaxis.set_major_locator(locator)
+ax.xaxis.set_major_formatter(formatter)
+
+ax2 = ax.twinx()
+ax2.set_zorder(-1)
+ax.set_facecolor("None")
+(l_tau,) = ax2.plot(
+    surface_stress_at_C.index,
+    surface_stress_at_C.abs().to_numpy(),
+    color="tab:red",
+    label="$\\tau(t)$",
+    lw=2,
+)
+
+ax2.set_ylabel("surface stress\n$|\\tau|$ / (N$\\,$m$^{-2}$)")
 
 
-def get_pearson_standard_error(x, y, N):
-    # standard error of pearson correlation according to Bonett2008, recommended in Gnambs2023
-    standard_error = (1 - y**2) / np.sqrt(N - 3)
-    return standard_error
-    # axis.fill_between(x,y-standard_error,y+standard_error, color=color, alpha=alpha, edgecolor=None)
+def smooth(array, length):
+    window = signal.windows.hann(length)  # construct Hanning window
+    # smooth by convolving speed with window
+    smoothed = signal.convolve(array, window, mode="same") / np.sum(window)
+    return smoothed
 
 
-def plot_corr_with_error_bands(x, y, N, axis, label, color, plot_errorbars=False):
-    y_style = {"hatch": "||||", "facecolor": "None", "linewidth": 0}
-    x_style = {"hatch": "---", "facecolor": "None", "linewidth": 0}
-    x_style["edgecolor"] = color
-    y_style["edgecolor"] = color
-    # x=5*lags_tau_HKE
-    # y=corr_tau_HKE
-    x_err = 5
-    y_err = get_pearson_standard_error(x=x, y=y, N=N)
-    plot_xy_errorbands(x, y, x_err, y_err, x_style, y_style, plot_errorbars=plot_errorbars, ax=axis)
-    axis.plot(x, y, color=color, label=label, lw=2.5)
+ax3 = ax.twinx()
+ax3.spines["right"].set_position(("axes", 1.2))
+ax3.set_ylabel("inertial wind / (m/s)$")
+ax3.set_zorder(-2)
+ax2.set_facecolor("None")
+(l_uv,) = ax3.plot(
+    inertial_wind_at_C.index,
+    smooth(inertial_wind_at_C.abs().to_numpy(), 100),
+    color="k",
+    label="uv",
+    lw=2,
+)
 
+ax.legend(
+    handles=[l_eps, l_avrg, l_paper, l_tau, l_uv],
+    title="measured at mooring C, 2350$\\,$m depth, 143$\\,$mab",
+    ncol=2,
+    fontsize=6,
+    framealpha=0.9,
+)
 
-# plot_standard_error(x=5*lags_tau_HKE,y=corr_tau_HKE,N=len(pair["hke"]),axis=ax[1], color="#d95f02", alpha=0.5)
-# y_style = {"hatch":"||||", "facecolor":"None", "linewidth":0}
-# x_style = {"hatch":"---", "facecolor":"None", "linewidth":0}
-# y_style = {"facecolor":"xkcd:pale green", "edgecolor":"k", "alpha":0.9, "linewidth":0}
-# x_style = {"facecolor":"xkcd:pale green", "edgecolor":"k", "linewidth":0}
-
-x = 5 * lags_dissip_hke
-y = corr_dissip_hke
-N = len(dissip_hke_pair["hke"])
-label = "$\\varepsilon_\\mathrm{IGW} \\star \\text{HKE}$"
-color = "k"
-plot_corr_with_error_bands(x, y, N, axis=ax[1], label=label, color=color, plot_errorbars=False)
-
-x = 5 * lags_tau_HKE
-y = corr_tau_HKE
-N = len(pair["hke"])
-label = "$\\tau \\star \\text{HKE}$"
-color = "#d95f02"
-plot_corr_with_error_bands(x, y, N, axis=ax[1], label=label, color=color, plot_errorbars=False)
-
-x = 5 * lags_mean_flow_HKE
-y = corr_mean_flow_HKE
-N = len(pair["hke"])
-label = "$|\\overline{u}| \\star \\text{HKE}$"
-color = "#7570b3"
-plot_corr_with_error_bands(x, y, N, axis=ax[1], label=label, color=color, plot_errorbars=False)
-
-x = 5 * lags_N2_HKE
-y = corr_N2_HKE
-N = len(pair["hke"])
-label = "$N^2 \\star \\text{HKE}$"
-color = "#1b9e77"
-plot_corr_with_error_bands(x, y, N, axis=ax[1], label=label, color=color, plot_errorbars=False)
-
-# x_err = 5
-# y_err = get_standard_error(x=5*lags_tau_HKE,y=corr_tau_HKE,)
-# plot_xy_errorbands(x,y,x_err,y_err,x_style, y_style,plot_errorbars=True,ax=ax[1])
-# ax[1].plot(x,y, "#d95f02", label="($|\\vec{\\tau}| \\star \\text{HKE}$)", lw=2.5)
-
-# x_style["edgecolor"] = "#7570b3"
-# y_style["edgecolor"] = "#7570b3"
-# x=5*lags_mean_flow_HKE
-# y=corr_mean_flow_HKE
-# x_err = 5
-# y_err = get_standard_error(x=5*lags_mean_flow_HKE,y=corr_tau_HKE,N=len(pair["hke"]))
-# plot_xy_errorbands(x,y,x_err,y_err,x_style, y_style,plot_errorbars=True,ax=ax[1])
-# ax[1].plot(5*lags_mean_flow_HKE, corr_mean_flow_HKE, "#7570b3", label="($|\\vec{u}| \\star \\text{HKE}$)", lw=2.5)
-
-# # standard_error_mean_flow_HKE = (1-corr_mean_flow_HKE**2)/np.sqrt(len(pair["hke"]))
-# # ax[1].fill_between(5*lags_tau_HKE,corr_mean_flow_HKE-standard_error_mean_flow_HKE,corr_mean_flow_HKE+standard_error_mean_flow_HKE, color="#7570b3", alpha=0.7)
-
-# plot_standard_error(x=5*lags_N2_HKE,y=corr_N2_HKE,N=len(pair["hke"]),axis=ax[1], color="#1b9e77", alpha=0.5)
-# ax[1].plot(5*lags_N2_HKE, corr_N2_HKE, "#1b9e77", label="($N^2 \\star \\text{HKE}$)", lw=2.5)
-
-# # standard_error_tau_HKE = (1-corr_tau_HKE**2)/np.sqrt(len(pair["hke"]))
-# # ax[1].fill_between(5*lags_tau_HKE,corr_tau_HKE-standard_error_tau_HKE,corr_tau_HKE+standard_error_tau_HKE, color="#1b9e77", alpha=0.7)
-
-# #ax[1].plot(5*lags2,corr2_in_percent, "k", alpha = 0.3, label="raw", lw=0.7)
-# ax[1].set_xlim(-50,70)
-ax[1].set_xlim(-55, 70)
-# ax[1].set_xlim(-101,120)
-ax[1].set_xlabel("days of lag")
-ax[1].set_ylabel("normalized\ncross-correlation / (1)")
-# #ax[1].yaxis.set_major_formatter(mticker.PercentFormatter(decimals=0))
-fig.legend(fontsize=7, loc="upper right", framealpha=0.9)
-fig.savefig(pinner2026_jpo_code.FIGURE_DIR / "f09_surface_hke_corr.pdf")
+fig.savefig(FIGURE_DIR / "f09_dissipation_rate_at_mooring_C.pdf")
+plt.show()

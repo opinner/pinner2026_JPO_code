@@ -2089,24 +2089,6 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/c2/e9/11cb4861003a3a79a8a7a107cc9ee3983be9938989436bd3c8280c26d86f/jupyternotify-0.1.15.tar.gz", hash = "sha256:843509e7c3e3369f221a87af310165d51122e0ee8ed1c4ce0cdc34338e17b73a", size = 7237, upload-time = "2018-01-08T14:52:15.447Z" }
 
 [[package]]
-name = "jupytext"
-version = "1.19.1"
-source = { registry = "https://pypi.org/simple" }
-dependencies = [
-    { name = "markdown-it-py", version = "3.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
-    { name = "markdown-it-py", version = "4.0.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
-    { name = "mdit-py-plugins" },
-    { name = "nbformat" },
-    { name = "packaging" },
-    { name = "pyyaml" },
-    { name = "tomli", marker = "python_full_version < '3.11'" },
-]
-sdist = { url = "https://files.pythonhosted.org/packages/13/a5/80c02f307c8ce863cb33e27daf049315e9d96979e14eead700923b5ec9cc/jupytext-1.19.1.tar.gz", hash = "sha256:82587c07e299173c70ed5e8ec7e75183edf1be289ed518bab49ad0d4e3d5f433", size = 4307829, upload-time = "2026-01-25T21:35:13.276Z" }
-wheels = [
-    { url = "https://files.pythonhosted.org/packages/16/5a/736dd2f4535dbf3bf26523f9158c011389ef88dd06ec2eef67fd744f1c7b/jupytext-1.19.1-py3-none-any.whl", hash = "sha256:d8975035155d034bdfde5c0c37891425314b7ea8d3a6c4b5d18c294348714cd9", size = 170478, upload-time = "2026-01-25T21:35:11.17Z" },
-]
-
-[[package]]
 name = "kiwisolver"
 version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
@@ -3705,7 +3687,6 @@ dependencies = [
     { name = "jupyterbook-latex" },
     { name = "jupyterlab" },
     { name = "jupyternotify" },
-    { name = "jupytext" },
     { name = "marimo" },
     { name = "markdown" },
     { name = "matplotlib" },
@@ -3801,7 +3782,6 @@ requires-dist = [
     { name = "jupyterbook-latex" },
     { name = "jupyterlab" },
     { name = "jupyternotify" },
-    { name = "jupytext" },
     { name = "marimo", specifier = ">=0.23.3" },
     { name = "markdown" },
     { name = "matplotlib" },

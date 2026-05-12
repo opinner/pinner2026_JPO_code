@@ -9,7 +9,6 @@ import pandas as pd
 import src.helper
 import src.plots
 import src.spectra
-from scipy.optimize import curve_fit
 
 # load all 7 moorings as dataframes
 list_of_moorings = src.helper.load_pickle(name="../../data/mooring/list_of_moorings.pkl")

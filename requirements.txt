@@ -1107,10 +1107,6 @@ jupyterlab-widgets==3.0.16 \
 jupyternotify==0.1.15 \
     --hash=sha256:843509e7c3e3369f221a87af310165d51122e0ee8ed1c4ce0cdc34338e17b73a
     # via pinner2026-jpo-code
-jupytext==1.19.1 \
-    --hash=sha256:82587c07e299173c70ed5e8ec7e75183edf1be289ed518bab49ad0d4e3d5f433 \
-    --hash=sha256:d8975035155d034bdfde5c0c37891425314b7ea8d3a6c4b5d18c294348714cd9
-    # via pinner2026-jpo-code
 kiwisolver==1.5.0 \
     --hash=sha256:012b1eb16e28718fa782b5e61dc6f2da1f0792ca73bd05d54de6cb9561665fc9 \
     --hash=sha256:01808c6d15f4c3e8559595d6d1fe6411c68e4a3822b4b9972b44473b24f4e679 \
@@ -1360,7 +1356,6 @@ markdown-it-py==3.0.0 ; python_full_version < '3.11' \
     --hash=sha256:355216845c60bd96232cd8d8c40e8f9765cc86f46880e43a8fd22dc1a1a8cab1 \
     --hash=sha256:e3f60a94fa066dc52ec76661e37c851cb232d92f9886b15cb560aaada2df8feb
     # via
-    #   jupytext
     #   mdit-py-plugins
     #   myst-parser
     #   rich
@@ -1368,7 +1363,6 @@ markdown-it-py==4.0.0 ; python_full_version >= '3.11' \
     --hash=sha256:87327c59b172c5011896038353a81343b6754500a08cd7a4973bb48c6d578147 \
     --hash=sha256:cb0a2b4aa34f932c007117b194e945bd74e0ec24133ceb5bac59009cda1cb9f3
     # via
-    #   jupytext
     #   mdit-py-plugins
     #   myst-parser
     #   rich
@@ -1531,9 +1525,7 @@ mccabe==0.7.0 \
 mdit-py-plugins==0.5.0 \
     --hash=sha256:07a08422fc1936a5d26d146759e9155ea466e842f5ab2f7d2266dd084c8dab1f \
     --hash=sha256:f4918cb50119f50446560513a8e311d574ff6aaed72606ddae6d35716fe809c6
-    # via
-    #   jupytext
-    #   myst-parser
+    # via myst-parser
 mdurl==0.1.2 \
     --hash=sha256:84008a41e51615a49fc9966191ff91509e3c40b939176e643fd50a5c2196b8f8 \
     --hash=sha256:bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba
@@ -1632,7 +1624,6 @@ nbformat==5.10.4 \
     # via
     #   jupyter-cache
     #   jupyter-server
-    #   jupytext
     #   myst-nb
     #   nbclient
     #   nbconvert
@@ -1829,7 +1820,6 @@ packaging==26.1 \
     #   jupyter-server
     #   jupyterlab
     #   jupyterlab-server
-    #   jupytext
     #   marimo
     #   matplotlib
     #   nbconvert
@@ -2394,7 +2384,6 @@ pyyaml==6.0.3 \
     #   jupyter-cache
     #   jupyter-events
     #   jupyterbook-latex
-    #   jupytext
     #   marimo
     #   myst-nb
     #   myst-parser
@@ -3144,7 +3133,6 @@ tomli==2.4.1 ; python_full_version <= '3.11' \
     #   coverage
     #   dparse
     #   jupyterlab
-    #   jupytext
     #   pytest
     #   safety
     #   sphinx

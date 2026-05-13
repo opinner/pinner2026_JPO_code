@@ -301,14 +301,18 @@ def plot_xy_errorbands(
     y,
     x_errors,
     y_errors,
-    x_style: dict = {},
-    y_style: dict = {},
+    x_style: dict | None = None,
+    y_style: dict | None = None,
     x_label: str = "",
     y_label: str = "",
     plot_errorbars: bool = False,
     ax: mpl.axes.Axes = None,
 ):
 
+    if y_style is None:
+        y_style = {}
+    if x_style is None:
+        x_style = {}
     x_lower = x - x_errors
     x_upper = x + x_errors
     y_lower = y - y_errors

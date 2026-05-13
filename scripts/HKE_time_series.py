@@ -1,3 +1,4 @@
+import itertools
 from datetime import datetime
 
 import matplotlib as mpl
@@ -16,15 +17,15 @@ mooring_C = src.helper.load_pickle(name="../preprocessing/mooring_C.pkl")
 region_categorization = pd.read_csv("../../derived_data/rcm_infos.csv", index_col=0)
 names = ["A", "B", "C", "D", "E", "F", "G"]
 moorings = {}
-for name, mooring in zip(names, list_of_moorings):
+for name, mooring in zip(names, list_of_moorings, strict=False):
     moorings[name] = mooring.set_index("time")
     print(mooring.location, list(mooring.columns))
 
 
 def find_latest_start(moorings):
     starttimes = []
-    for i, (name, mooring) in enumerate(moorings.items()):
-        for j, col in enumerate(mooring.columns):
+    for _i, (name, mooring) in enumerate(moorings.items()):
+        for _j, col in enumerate(mooring.columns):
             if name == "C":
                 series = pd.Series(
                     index=mooring_C[f"time_{col}"].values, data=mooring_C[col].values
@@ -63,10 +64,10 @@ def get_integration_intervals_for_tidal_peaks(freq, P, tidal_periods):
     # because the peaks all have the same width 2P, I can check the ascending order
     # by checking if the start or the end points are in ascending order. I test here both to be extra sure
     def is_monotonic_increasing(L):
-        return all(x <= y for x, y in zip(L, L[1:]))
+        return all(x <= y for x, y in itertools.pairwise(L))
 
     # slicing a list of tuples is complicated
-    interval_start_points = list(zip(*integration_indices_intervals))[0]
+    interval_start_points = list(zip(*integration_indices_intervals, strict=False))[0]
     try:
         assert is_monotonic_increasing(interval_start_points)
     except AssertionError as e:
@@ -74,7 +75,7 @@ def get_integration_intervals_for_tidal_peaks(freq, P, tidal_periods):
         raise e
 
     # slicing a list of tuples is complicated
-    interval_end_points = list(zip(*integration_indices_intervals))[1]
+    interval_end_points = list(zip(*integration_indices_intervals, strict=False))[1]
     try:
         assert is_monotonic_increasing(interval_end_points)
     except AssertionError as e:
@@ -149,7 +150,7 @@ plt.ticklabel_format(axis="y", style="sci", scilimits=(0, 0), useMathText=True)
 
 results_list = []
 for i, (name, mooring) in enumerate(moorings.items()):
-    for j, col in enumerate(mooring.columns):
+    for _j, col in enumerate(mooring.columns):
         if name == "C":
             series = pd.Series(index=mooring_C[f"time_{col}"].values, data=mooring_C[col].values)
             series = series[series.index.dropna()]

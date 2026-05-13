@@ -49,6 +49,7 @@ pinner2026_jpo_code = "pinner2026_jpo_code.cli:app"
 dev = [
   {include-group = "lint"},
   {include-group = "test"},
+  "pre-commit"
 ]
 lint = [
   "flake8",

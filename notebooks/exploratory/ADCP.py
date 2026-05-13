@@ -13,13 +13,15 @@
 # ---
 
 # %%
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.dates as mdates
-import matplotlib.colors as mcolors
 from pathlib import Path
+
 import cmocean as cm
+import matplotlib.colors as mcolors
+import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+
 import pinner2026_jpo_code
 
 RAW_DATA_DIR: Path = pinner2026_jpo_code.DATA_DIR / "raw"
@@ -66,9 +68,11 @@ print(LAST_ENSEMBLE)
 start_time = pd.Timedelta(hours=u["HH"].iloc[0], minutes=u["MM"].iloc[0], seconds=u["SS"].iloc[0])
 
 # Compute each row's timedelta from midnight of the start date
-row_times = pd.to_timedelta(u["HH"], unit="h") + \
-            pd.to_timedelta(u["MM"], unit="m") + \
-            pd.to_timedelta(u["SS"], unit="s") 
+row_times = (
+    pd.to_timedelta(u["HH"], unit="h")
+    + pd.to_timedelta(u["MM"], unit="m")
+    + pd.to_timedelta(u["SS"], unit="s")
+)
 
 # Find where the time rolls over (i.e. row time < previous row time)
 # and compute a day offset that increments at each rollover
@@ -84,19 +88,23 @@ u = u.drop(labels=["Ens", "HH", "MM", "SS", "HH.1"], axis="columns")
 v = v.drop(labels=["Ens", "HH", "MM", "SS", "HH.1"], axis="columns")
 
 # %%
-u.columns = (DISTANCE_FROM_GROUND_METERS + DISTANCE_FROM_ADCP + u.columns.astype(int) * VERTICAL_BIN_SIZE).round(2)
-v.columns = (DISTANCE_FROM_GROUND_METERS + DISTANCE_FROM_ADCP + v.columns.astype(int) * VERTICAL_BIN_SIZE).round(2)
+u.columns = (
+    DISTANCE_FROM_GROUND_METERS + DISTANCE_FROM_ADCP + u.columns.astype(int) * VERTICAL_BIN_SIZE
+).round(2)
+v.columns = (
+    DISTANCE_FROM_GROUND_METERS + DISTANCE_FROM_ADCP + v.columns.astype(int) * VERTICAL_BIN_SIZE
+).round(2)
 
 # %%
 # conversion from mm/s to m/s
-u = u/100
-v = v/100
+u = u / 100
+v = v / 100
 
 # %%
-fig, ax = plt.subplots(ncols=2, sharex = True, sharey=True)
+fig, ax = plt.subplots(ncols=2, sharex=True, sharey=True)
 binwidth = 0.5
-ubins=np.arange(u.min(axis=None), u.max(axis=None) + binwidth, binwidth)
-vbins=np.arange(u.min(axis=None), u.max(axis=None) + binwidth, binwidth)
+ubins = np.arange(u.min(axis=None), u.max(axis=None) + binwidth, binwidth)
+vbins = np.arange(u.min(axis=None), u.max(axis=None) + binwidth, binwidth)
 ax[0].hist(u.to_numpy().flatten(), bins=ubins, log=True, color="0.7")
 ax[1].hist(v.to_numpy().flatten(), bins=vbins, log=True, color="0.7")
 
@@ -134,15 +142,17 @@ vclean = pd.read_csv(INTERIM_DATA_DIR / "AWI207_bottom_v.csv", parse_dates=True,
 vclean.columns = vclean.columns.astype(float)
 
 # %%
-fig, ax = plt.subplots(nrows=2, sharex = True, sharey=True)
+fig, ax = plt.subplots(nrows=2, sharex=True, sharey=True)
 
-max_plot_velocity= MAX_REASONABLE_VELOCITY
-#max_plot_velocity= 2
+max_plot_velocity = MAX_REASONABLE_VELOCITY
+# max_plot_velocity= 2
 
 im0 = ax[0].pcolormesh(
-    uclean.index, uclean.columns, uclean.to_numpy().T,
+    uclean.index,
+    uclean.columns,
+    uclean.to_numpy().T,
     norm=mcolors.TwoSlopeNorm(vcenter=0, vmin=-max_plot_velocity, vmax=max_plot_velocity),
-    cmap=cm.cm.balance
+    cmap=cm.cm.balance,
 )
 
 im1 = ax[1].pcolormesh(
@@ -150,32 +160,28 @@ im1 = ax[1].pcolormesh(
     vclean.columns,
     vclean.to_numpy().T,
     norm=mcolors.TwoSlopeNorm(vcenter=0, vmin=-max_plot_velocity, vmax=max_plot_velocity),
-    cmap=cm.cm.balance
+    cmap=cm.cm.balance,
 )
 
 fig.colorbar(im0, ax=ax[0])
 fig.colorbar(im1, ax=ax[1])
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)
     axis.xaxis.set_major_formatter(formatter)
 
 # %%
-#u.describe()
+# u.describe()
 
 # %%
 u_shear = pd.DataFrame(
-    np.gradient(uclean.values, uclean.columns, axis=1),
-    index=uclean.index,
-    columns=uclean.columns
+    np.gradient(uclean.values, uclean.columns, axis=1), index=uclean.index, columns=uclean.columns
 )
 
 v_shear = pd.DataFrame(
-    np.gradient(vclean.values, vclean.columns, axis=1),
-    index=vclean.index,
-    columns=vclean.columns
+    np.gradient(vclean.values, vclean.columns, axis=1), index=vclean.index, columns=vclean.columns
 )
 
 Su = u_shear**2
@@ -187,16 +193,30 @@ Su_control = u_shear_control**2
 Sv_control = v_shear_control**2
 
 # %%
-#plt.hist((Sv- Sv_control).to_numpy().flatten(), log=True, bins=20)
+# plt.hist((Sv- Sv_control).to_numpy().flatten(), log=True, bins=20)
 
 # %%
-fig, ax = plt.subplots(ncols=2, sharex = True, sharey=True)
+fig, ax = plt.subplots(ncols=2, sharex=True, sharey=True)
 binwidth = (Su.max(axis=None) - Su.min(axis=None)) / 30
-ubins=np.arange(Su.min(axis=None), Su.max(axis=None) + binwidth, binwidth)
-vbins=np.arange(Sv.min(axis=None), Sv.max(axis=None) + binwidth, binwidth)
+ubins = np.arange(Su.min(axis=None), Su.max(axis=None) + binwidth, binwidth)
+vbins = np.arange(Sv.min(axis=None), Sv.max(axis=None) + binwidth, binwidth)
 
-ax[0].hist(Su_control.to_numpy().flatten(), bins=ubins, log=True, color="tab:blue", alpha=0.3, label="np.diff")
-ax[1].hist(Sv_control.to_numpy().flatten(), bins=vbins, log=True, color="tab:blue", alpha=0.3, label="np.diff")
+ax[0].hist(
+    Su_control.to_numpy().flatten(),
+    bins=ubins,
+    log=True,
+    color="tab:blue",
+    alpha=0.3,
+    label="np.diff",
+)
+ax[1].hist(
+    Sv_control.to_numpy().flatten(),
+    bins=vbins,
+    log=True,
+    color="tab:blue",
+    alpha=0.3,
+    label="np.diff",
+)
 
 ax[0].hist(Su.to_numpy().flatten(), bins=ubins, log=True, color="0.7", label="np.gradient")
 ax[1].hist(Sv.to_numpy().flatten(), bins=vbins, log=True, color="0.7", label="np.gradient")
@@ -211,46 +231,41 @@ ax[0].set_xlabel("$S_u^2$ / (s$^{-2}$)")
 ax[1].set_xlabel("$S_v^2$ / (s$^{-2}$)")
 
 # %%
-fig, ax = plt.subplots(nrows=2, sharex = True, sharey=True)
+fig, ax = plt.subplots(nrows=2, sharex=True, sharey=True)
 
 # max_plot_shear =  2* MAX_REASONABLE_VELOCITY / VERTICAL_BIN_SIZE
-max_plot_shear_squared =  1*1e-3
+max_plot_shear_squared = 1 * 1e-3
 
-im0 = ax[0].pcolormesh(
-    Su.index, Su.columns, Su.to_numpy().T,
-    norm=mcolors.LogNorm(vmin= ),
-    cmap=cm.cm.speed
-)
+norm = mcolors.LogNorm(vmin=1e-6, vmax=1e-2)
+norm = mcolors.PowerNorm(gamma=1, vmin=0, vmax=1e-3)
+
+im0 = ax[0].pcolormesh(Su.index, Su.columns, Su.to_numpy().T, norm=norm, cmap=cm.cm.speed)
 
 
-im1 = ax[1].pcolormesh(
-    Sv.index,
-    Sv.columns,
-    Sv.to_numpy().T,
-    norm=mcolors.LogNorm(),
-    cmap=cm.cm.speed
-)
+im1 = ax[1].pcolormesh(Sv.index, Sv.columns, Sv.to_numpy().T, norm=norm, cmap=cm.cm.speed)
 
 ubar = fig.colorbar(im0, ax=ax[0])
 ubar.set_label("$S_u^2$ / (s$^{-2}$)")
 vbar = fig.colorbar(im1, ax=ax[1])
 vbar.set_label("$S_v^2$ / s$^{-2}$")
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)
     axis.xaxis.set_major_formatter(formatter)
 
 # %%
-fig, ax = plt.subplots(nrows=2, sharex = True, sharey=True)
+fig, ax = plt.subplots(nrows=2, sharex=True, sharey=True)
 
 linthresh = 1e-3
 
 im0 = ax[0].pcolormesh(
-    u_shear.index, u_shear.columns, u_shear.to_numpy().T,
+    u_shear.index,
+    u_shear.columns,
+    u_shear.to_numpy().T,
     norm=mcolors.SymLogNorm(linthresh),
-    cmap=cm.cm.balance
+    cmap=cm.cm.balance,
 )
 
 im1 = ax[1].pcolormesh(
@@ -258,29 +273,31 @@ im1 = ax[1].pcolormesh(
     v_shear.columns,
     v_shear.to_numpy().T,
     norm=mcolors.SymLogNorm(linthresh),
-    cmap=cm.cm.balance
+    cmap=cm.cm.balance,
 )
-    
+
 fig.colorbar(im0, ax=ax[0])
 fig.colorbar(im1, ax=ax[1])
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)
     axis.xaxis.set_major_formatter(formatter)
 
 # %%
-fig, ax = plt.subplots(nrows=2, sharex = True, sharey=True)
+fig, ax = plt.subplots(nrows=2, sharex=True, sharey=True)
 
 # max_plot_shear = 2 * MAX_REASONABLE_VELOCITY / VERTICAL_BIN_SIZE
 # max_plot_shear = max_plot_shear * 1e-3
 # #max_plot_shear= 2
 
 im0 = ax[0].pcolormesh(
-    u_shear.index, u_shear.columns, u_shear.to_numpy().T,
+    u_shear.index,
+    u_shear.columns,
+    u_shear.to_numpy().T,
     norm=mcolors.TwoSlopeNorm(vcenter=0, vmin=-max_plot_shear, vmax=max_plot_shear),
-    cmap=cm.cm.balance
+    cmap=cm.cm.balance,
 )
 
 im1 = ax[1].pcolormesh(
@@ -288,13 +305,13 @@ im1 = ax[1].pcolormesh(
     v_shear.columns,
     v_shear.to_numpy().T,
     norm=mcolors.TwoSlopeNorm(vcenter=0, vmin=-max_plot_shear, vmax=max_plot_shear),
-    cmap=cm.cm.balance
+    cmap=cm.cm.balance,
 )
-    
+
 fig.colorbar(im0, ax=ax[0])
 fig.colorbar(im1, ax=ax[1])
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)

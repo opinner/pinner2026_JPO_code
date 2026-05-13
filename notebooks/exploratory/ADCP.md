@@ -165,7 +165,7 @@ im1 = ax[1].pcolormesh(
 fig.colorbar(im0, ax=ax[0])
 fig.colorbar(im1, ax=ax[1])
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)
@@ -230,9 +230,12 @@ fig, ax = plt.subplots(nrows=2, sharex = True, sharey=True)
 # max_plot_shear =  2* MAX_REASONABLE_VELOCITY / VERTICAL_BIN_SIZE
 max_plot_shear_squared =  1*1e-3
 
+norm = mcolors.LogNorm(vmin= 1e-6, vmax=1e-2)
+norm = mcolors.PowerNorm(gamma=1, vmin=0, vmax=1e-3)
+
 im0 = ax[0].pcolormesh(
     Su.index, Su.columns, Su.to_numpy().T,
-    norm=mcolors.LogNorm(vmin= ),
+    norm=norm,
     cmap=cm.cm.speed
 )
 
@@ -241,7 +244,7 @@ im1 = ax[1].pcolormesh(
     Sv.index,
     Sv.columns,
     Sv.to_numpy().T,
-    norm=mcolors.LogNorm(),
+    norm=norm,
     cmap=cm.cm.speed
 )
 
@@ -250,7 +253,7 @@ ubar.set_label("$S_u^2$ / (s$^{-2}$)")
 vbar = fig.colorbar(im1, ax=ax[1])
 vbar.set_label("$S_v^2$ / s$^{-2}$")
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)
@@ -279,7 +282,7 @@ im1 = ax[1].pcolormesh(
 fig.colorbar(im0, ax=ax[0])
 fig.colorbar(im1, ax=ax[1])
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)
@@ -310,7 +313,7 @@ im1 = ax[1].pcolormesh(
 fig.colorbar(im0, ax=ax[0])
 fig.colorbar(im1, ax=ax[1])
 
-for nn, axis in enumerate(ax):
+for axis in ax:
     locator = mdates.AutoDateLocator(minticks=3, maxticks=7)
     formatter = mdates.ConciseDateFormatter(locator)
     axis.xaxis.set_major_locator(locator)

@@ -1,13 +1,13 @@
 {
   "template": "https://github.com/opinner/cookiecutter-pyproject",
-  "commit": "2d18da64d4d4d1f79262c6f02d971c885da3bf97",
+  "commit": "4efa83bd7d56fff03f67c7d31a04bd3020817d70",
   "checkout": null,
   "context": {
     "cookiecutter": {
       "project_author": "Ole Pinner",
       "email": "ole.pinner@awi.de",
       "github_username": "opinner",
-      "project_name": "pinner2026_jpo_code",
+      "project_name": "pinner2026_JPO_code",
       "project_slug": "pinner2026_jpo_code",
       "package_name": "pinner2026_jpo_code",
       "is_research_project": true,
@@ -22,7 +22,7 @@
         "justfile"
       ],
       "_template": "https://github.com/opinner/cookiecutter-pyproject",
-      "_commit": "2d18da64d4d4d1f79262c6f02d971c885da3bf97"
+      "_commit": "4efa83bd7d56fff03f67c7d31a04bd3020817d70"
     }
   },
   "directory": null

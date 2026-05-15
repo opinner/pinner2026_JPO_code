@@ -103,7 +103,7 @@ ax2.set_facecolor("None")
     inertial_wind_at_C.index,
     smooth(inertial_wind_at_C.abs().to_numpy(), 100),
     color="k",
-    label="uv",
+    label="wind",
     lw=2,
 )
 

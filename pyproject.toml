@@ -38,6 +38,7 @@ dependencies = [
   "gsw>=3.6.20",
   "seaborn>=0.13.2",
   "cmocean>=4.0.3",
+  "cartopy>=0.25.0",
 ]
 
 

@@ -15,7 +15,7 @@
 # %%
 import os.path
 
-import equations as eq
+import quarantine._dissip_time_series.equations as eq
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import numpy as np

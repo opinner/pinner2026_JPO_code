@@ -1,5 +1,5 @@
 {
-  "template": "https://github.com/opinner/cookiecutter-pyproject",
+  "template": "https://github.com/opinner/Research-Project-Template",
   "commit": "4efa83bd7d56fff03f67c7d31a04bd3020817d70",
   "checkout": null,
   "context": {
@@ -21,7 +21,7 @@
         "docs/references.bib",
         "justfile"
       ],
-      "_template": "https://github.com/opinner/cookiecutter-pyproject",
+      "_template": "https://github.com/opinner/Research-Project-Template",
       "_commit": "4efa83bd7d56fff03f67c7d31a04bd3020817d70"
     }
   },

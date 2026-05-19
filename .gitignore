@@ -163,7 +163,8 @@ MANIFEST
 
 # End of https://www.toptal.com/developers/gitignore/api/python
 
-
+#
 data/raw/
 data/interim/
 data/processed/
+*.pdf

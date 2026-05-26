@@ -11,7 +11,7 @@ include = [
     "notebooks/**/*.py",    # as well in the notebooks folder
     "notebooks/**/*.ipynb"  # and Marimo notebooks
 ] 
-exclude = ["docs/", "build/", ".venv/", "venv/", "diagnostics/"] 
+exclude = ["docs/", "build/", ".venv/", "venv/", "diagnostics/", "quarantine/"] 
 
 [format]
 quote-style = "double"

@@ -11,7 +11,16 @@ include = [
     "notebooks/**/*.py",    # as well in the notebooks folder
     "notebooks/**/*.ipynb"  # and Marimo notebooks
 ] 
-exclude = ["docs/", "build/", ".venv/", "venv/", "diagnostics/", "quarantine/"] 
+exclude = [
+    "docs/",
+    "build/",
+    ".venv/",
+    "venv/",
+    "diagnostics/",
+    "quarantine/",
+    "_[!_]*.py", # exclude python files starting with a single(!) underscore
+    "_[!_]*.ipynb" # exclude notebook files starting with a single(!) underscore
+]
 
 [format]
 quote-style = "double"
@@ -100,3 +109,4 @@ dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
 [lint.pydocstyle]
 convention = "numpy"
+

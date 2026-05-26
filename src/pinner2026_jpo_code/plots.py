@@ -4,6 +4,7 @@
 
 import matplotlib as plt
 import numpy as np
+from matplotlib.collections import PolyCollection
 
 ONE_COLUMN_WIDTH = 8.3
 TWO_COLUMN_WIDTH = 12
@@ -165,6 +166,7 @@ class Plot:
 
         return ax2
 
+    # ruff: disable[C901]
     @staticmethod
     def _axstyle(
         ax=None,
@@ -290,8 +292,6 @@ def get_region_color_dict(linebreak=False):
         }
     return colors
 
-
-from matplotlib.collections import PolyCollection
 
 # import matplotlib
 

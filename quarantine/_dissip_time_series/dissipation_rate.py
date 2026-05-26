@@ -22,14 +22,14 @@ import numpy as np
 import pandas as pd
 
 import pinner2026_jpo_code
-import pinner2026_jpo_code.helper as helper
+import pinner2026_jpo_code._helper as _helper
 
 # %%
 INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
 DERIVED_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "derived"
 
 # %%
-nsquared_data = helper.load_pickle(INTERIM_DATA_DIR / "nsquared_data_at_measurements.pkl")
+nsquared_data = _helper.load_pickle(INTERIM_DATA_DIR / "nsquared_data_at_measurements.pkl")
 nsquared_data_at_C = nsquared_data["C"][2350]
 nsquared_data_at_C
 
@@ -76,11 +76,11 @@ def get_mean_N_squared_in_chunk(chunk_time_index, N_squared_series):
 
 # %%
 latitude_at_mooring_C = -63.66
-CORIOLIS_FREQUENCY_IN_CPD = helper.get_coriolis_frequency(
+CORIOLIS_FREQUENCY_IN_CPD = _helper.get_coriolis_frequency(
     latitude_at_mooring_C, unit="cpd", absolute=True
 )
 CORIOLIS_FREQUENCY_IN_CPD
-coriolis_frequency_in_rads = helper.get_coriolis_frequency(
+coriolis_frequency_in_rads = _helper.get_coriolis_frequency(
     latitude_at_mooring_C, unit="rad/s", absolute=True
 )
 

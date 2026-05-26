@@ -7,7 +7,6 @@ import pandas as pd
 import scipy.signal as signal
 
 import pinner2026_jpo_code
-import pinner2026_jpo_code.helper as helper
 
 INTERIM_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "interim"
 DERIVED_DATA_DIR = pinner2026_jpo_code.DATA_DIR / "derived"

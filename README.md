@@ -2,7 +2,9 @@
 
 [![build](https://github.com/opinner/pinner2026_JPO_code/actions/workflows/main.yml/badge.svg)](https://github.com/opinner/pinner2026_JPO_code/actions/)
 
-[![License MIT license](https://img.shields.io/github/license/opinner/pinner2026_JPO_code)](./LICENSE)
+[![License MIT license](https://img.shields.io/github/license/opinner/pinner2026_JPO_code)](./LICENSE) <!--- Should automatically start to work once the project is public --> 
+
+
 
 
 Research code to Pinner et al., 2026 in JPO

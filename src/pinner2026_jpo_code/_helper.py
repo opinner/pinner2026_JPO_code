@@ -14,45 +14,7 @@ def matlab2datetime(matlab_datenum):
     return day + dayfrac
 
 
-# -------------------------------------------
-# Functions for loading data
-# -------------------------------------------
 
-
-def save_as_pickle(figure, name="figure"):
-    import pickle
-
-    # save the mpl figure as pickle format
-    with open(f"{name}", "wb") as fs:
-        pickle.dump(figure, fs)
-    return
-
-
-def load_pickle(name="figure"):
-    import pickle
-
-    with open(f"{name}", "rb") as fs:
-        return pickle.load(fs)
-
-
-def get_filepaths_from_directory(directory="/media/sf_VM_Folder/data", inclusive="", exclusive=()):
-
-    # endswith method requires string or tuple of strings
-    if type(inclusive) is not str and type(inclusive) is not tuple:
-        inclusive = tuple(inclusive)
-    if not type(inclusive) is not str and type(inclusive) is not tuple:
-        exclusive = tuple(exclusive)
-
-    def all_files(folder):
-        import os
-
-        for path, _dirs, files in os.walk(folder):
-            for f in files:
-                yield os.path.join(path, f)
-
-    list_of_files = list(all_files(directory))
-
-    return [f for f in list_of_files if f.endswith(inclusive) and not f.endswith(exclusive)]
 
 
 def butter_bandpass_filter(data, lowcut, highcut, fs, order=5):

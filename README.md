@@ -5,13 +5,16 @@
 [![License MIT license](https://img.shields.io/github/license/opinner/pinner2026_JPO_code)](./LICENSE) <!--- Should automatically start to work once the project is public --> 
 
 
-
-
 Research code to Pinner et al., 2026 in JPO
 
 
+Currently this project still contains messy code, most importantly that the methods are banned to `quarantine/_dissip_time_series/`. 
+This repo shoudl solely focus on the paper and the figures/results in there, while the method should be encapsulated in the package dissipy.
 
-## <u>Table of Contents</u> <!-- omit in toc -->
+Therefore, heavy refactoring is needed. There is even a thrid repo, where I coded the method originally.
+
+
+<!-- ## <u>Table of Contents</u> <!-- omit in toc -->
 <!-- Automatically created in VSCode with the `Markdown All in One` extension -->
 
 - [Preparation](#preparation)
@@ -22,7 +25,7 @@ Research code to Pinner et al., 2026 in JPO
   - [Plotting](#plotting)
 - [Project Structure](#project-structure)
 - [Maintainer](#maintainer)
-- [Contact \& Issues](#contact--issues)
+- [Contact \& Issues](#contact--issues) -->
 
 
 ## Preparation
@@ -31,9 +34,9 @@ Research code to Pinner et al., 2026 in JPO
 
 To reproduce the project, clone this repository on your machine
 
-```bash
+<!-- ```bash
 git clone https://github.com/opinner/pinner2026_JPO_code
-```
+``` -->
 
 ### Setup
 

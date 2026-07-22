@@ -35,7 +35,7 @@ with open(INTERIM_DATA_DIR / "IT_filtered.pickle", "rb") as IT_file:
 
 
 fig, ax = plt.subplots(
-    ncols=2, nrows=2, sharey=True, sharex=True, figsize=(6, 6), layout="constrained"
+    ncols=4, nrows=2, sharey=True, sharex=True, figsize=(6, 6), layout="constrained"
 )
 
 HALFRANGE = 0.05
@@ -46,13 +46,16 @@ for i, (name, data) in enumerate(NIW_dict.items()):
         continue
     if "CCW" not in name:
         continue
+
+    data = data.apply(np.imag).abs().rolling("7D").mean()
+
     ax[0, -1 - i].set_title(f"NIW {name}")
     im = ax[0, -1 - i].pcolormesh(
         data.index,
         data.columns,
-        data.to_numpy().imag.T,  # v (east) velocity
-        norm=mcolors.CenteredNorm(halfrange=HALFRANGE),
-        cmap=cm.cm.balance,
+        data.to_numpy().T,  # v (east) velocity
+        cmap=cm.cm.speed,
+        vmax=0.08,
         rasterized=True,
     )
 
@@ -62,13 +65,16 @@ for i, (name, data) in enumerate(IT_dict.items()):
         continue
     if "CCW" not in name:
         continue
+
+    data = data.apply(np.imag).abs().rolling("7D").mean()
+
     ax[1, -1 - i].set_title(f"IT {name}")
     im = ax[1, -1 - i].pcolormesh(
         data.index,
         data.columns,
-        data.to_numpy().imag.T,  # v (east) velocity
-        norm=mcolors.CenteredNorm(halfrange=HALFRANGE),
-        cmap=cm.cm.balance,
+        data.to_numpy().T,  # v (east) velocity
+        cmap=cm.cm.speed,
+        vmax=0.08,
         rasterized=True,
     )
 
@@ -83,7 +89,7 @@ for axis in ax.flatten():
     axis.xaxis.set_major_locator(locator)
     axis.xaxis.set_major_formatter(formatter)
 
-cbar = fig.colorbar(im, ax=ax)
+cbar = fig.colorbar(im, ax=ax, extend="max")
 cbar.set_label("v / (m/s)")
 
 # ax0 = ax[0].twinx()

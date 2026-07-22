@@ -39,33 +39,34 @@ inertial_wind_at_C = inertial_wind_at_C.loc[: dissipation_rate_time_series.index
 cm = 1 / 2.54  # centimeters in inches
 plt.rcParams.update({"figure.facecolor": "white", "savefig.facecolor": "white", "font.size": 7})
 
-fig, ax = plt.subplots(1, figsize=(14 * cm, 5 * cm), layout="constrained")
+fig, ax = plt.subplots(1, figsize=(12 * cm, 5 * cm), layout="constrained")
 
 result_of_Pinner2025 = 1.7809504867405678e-09
-l_paper = ax.axhline(
-    result_of_Pinner2025,
-    color="black",
-    ls="--",
-    label="$\\overline{\\varepsilon_\\text{IGW}}$",
-    alpha=0.5,
-)
+# l_paper = ax.axhline(
+#     result_of_Pinner2025,
+#     color="black",
+#     ls="--",
+#     label="$\\overline{\\varepsilon_\\text{IGW}}$",
+#     alpha=0.5,
+# )
 
-l_avrg = ax.axhline(
-    np.mean(dissipation_rate_time_series),
-    ls="-",
-    label="$\\langle\\varepsilon_\\text{IGW}(t)\\rangle$",
-    color="black",
-    alpha=0.5,
-)
+# l_avrg = ax.axhline(
+#     np.mean(dissipation_rate_time_series),
+#     ls="-",
+#     label="$\\langle\\varepsilon_\\text{IGW}(t)\\rangle$",
+#     color="black",
+#     alpha=0.5,
+# )
 
 (l_eps,) = ax.plot(
     dissipation_rate_time_series.index,
     dissipation_rate_time_series.to_numpy(),
     label="$\\varepsilon_\\text{IGW}(t)$",
-    lw=2,
+    lw=1.5,
+    color="k",
 )
 
-ax.set_ylabel("wave-induced dissipation rate\n$\\varepsilon_{\\mathrm{IGW}}\\,$(W$\\,$kg$^{-1}$)")
+ax.set_ylabel("wave-induced dissipation rate\n$\\varepsilon_{\\mathrm{IGW}} / $(W$\\,$kg$^{-1}$)")
 
 locator = mdates.AutoDateLocator(minticks=8, maxticks=12)
 formatter = mdates.ConciseDateFormatter(locator)
@@ -78,12 +79,13 @@ ax.set_facecolor("None")
 (l_tau,) = ax2.plot(
     surface_stress_at_C.index,
     surface_stress_at_C.abs().to_numpy(),
-    color="tab:red",
+    color="#beaed4",
+    # ls="--",
     label="$\\tau(t)$",
-    lw=2,
+    lw=1.5,
 )
 
-ax2.set_ylabel("surface stress\n$|\\tau|$ / (N$\\,$m$^{-2}$)")
+ax2.set_ylabel("surface stress $\\tau$ / (N$\\,$m$^{-2}$)")
 
 
 def smooth(array, length):
@@ -95,24 +97,27 @@ def smooth(array, length):
 
 ax3 = ax.twinx()
 ax3.spines["right"].set_position(("axes", 1.2))
-ax3.set_ylabel("inertial wind / (m/s)$")
+ax3.set_ylabel("inertial wind / (m/s)")
 ax3.set_zorder(-2)
 ax2.set_facecolor("None")
 (l_uv,) = ax3.plot(
     inertial_wind_at_C.index,
     smooth(inertial_wind_at_C.abs().to_numpy(), 100),
-    color="k",
-    label="wind",
-    lw=2,
+    color="#7fc97f",
+    label=" inertial wind",
+    lw=1.5,
+    alpha=0.9,
 )
 
 ax.legend(
-    handles=[l_eps, l_avrg, l_paper, l_tau, l_uv],
+    # handles=[l_eps, l_avrg, l_paper, l_tau, l_uv],
+    handles=[l_eps, l_tau, l_uv],
     title="measured at mooring C, 2350$\\,$m depth, 143$\\,$mab",
-    ncol=2,
+    ncol=3,  # 2,
     fontsize=6,
+    title_fontsize=6,
     framealpha=0.9,
 )
 
 fig.savefig(FIGURE_DIR / "f09_dissipation_rate_at_mooring_C.pdf")
-plt.show()
+# plt.show()

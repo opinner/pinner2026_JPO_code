@@ -40,6 +40,7 @@ dependencies = [
   "cmocean>=4.0.3",
   "cartopy>=0.25.0",
   "spectrum>=0.10.0",
+  "pytest-regressions>=2.11.0",
 ]
 
 

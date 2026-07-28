@@ -2,8 +2,8 @@ from pathlib import Path
 
 import dissipy  #
 import pandas as pd
-import pinner2026_jpo_code
 
+import pinner2026_jpo_code
 
 RAW_DATA_DIR: Path = pinner2026_jpo_code.DATA_DIR / "raw"
 INTERIM_DATA_DIR: Path = pinner2026_jpo_code.DATA_DIR / "interim"

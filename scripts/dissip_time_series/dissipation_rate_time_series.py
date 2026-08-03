@@ -11,7 +11,7 @@ INTERIM_DATA_DIR: Path = pinner2026_jpo_code.DATA_DIR / "interim"
 
 # RAW_DATA_DIR /
 
-eps_IGW, diag = dissipy.dissipation_rate_time_series()
+eps_IGW, diag = dissipy.dissipation_rate_time_series(time, uv, uv_tidal, Nsq, **params)
 
 
 dissipation_rate_time_series = pd.Series(index=time, data=eps_IGW)

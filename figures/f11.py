@@ -33,6 +33,7 @@ fig, ax = plt.subplots(
 HALFRANGE = 0.05
 
 # NIW plotting
+ax[0, 0].set_title("NIWs")
 for i, (name, data) in enumerate(NIW_dict.items()):
     if name == "raw":
         continue
@@ -47,8 +48,8 @@ for i, (name, data) in enumerate(NIW_dict.items()):
     else:
         title_direction = "upwards"
 
-    ax[0, i].set_title(title_direction)
-    im = ax[0, i].pcolormesh(
+    ax[i, 0].set_ylabel(title_direction)
+    im = ax[i, 0].pcolormesh(
         data.index,
         data.columns,
         data.to_numpy().T,  # v (east) velocity
@@ -58,7 +59,7 @@ for i, (name, data) in enumerate(NIW_dict.items()):
         rasterized=True,
     )
 
-
+ax[0, 1].set_title("NIWs + ITs")
 for i, (name, data) in enumerate(IT_dict.items()):
     if name == "raw":
         continue
@@ -73,9 +74,9 @@ for i, (name, data) in enumerate(IT_dict.items()):
     else:
         title_direction = "upwards"
 
-    assert ax[0, i].get_title() == title_direction
+    assert ax[i, 0].get_ylabel() == title_direction
 
-    im = ax[1, i].pcolormesh(
+    im = ax[i, 1].pcolormesh(
         data.index,
         data.columns,
         data.to_numpy().T,  # v (east) velocity
@@ -86,6 +87,7 @@ for i, (name, data) in enumerate(IT_dict.items()):
     )
 
 fig.supylabel("Meters above ground")
+
 
 for axis in ax.flatten():
     # axis.set_ylim(30, 150)
@@ -115,5 +117,5 @@ cbar.set_label("mean v / (m/s)")
 # )
 
 
-fig.savefig(FIGURE_DIR / "f11_defense.svg", dpi=300)
+fig.savefig(FIGURE_DIR / "f11_vertical_energy.pdf", dpi=300)
 plt.show()

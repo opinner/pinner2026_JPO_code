@@ -157,11 +157,11 @@ for axis in snap_ax[-1, :]:
 
 # colorbar below the first two columns (NIWs: wide + narrow panels)
 cbar_main = fig.colorbar(im_main, ax=axs[:, 0:2], location="bottom", shrink=0.8, extend="max")
-cbar_main.set_label("daily |v| / (m s$^{1}$)")
+cbar_main.set_label("daily |v| / (m s$^{-1}$)")
 
 # colorbar below the second two columns (NIWs + ITs: wide + narrow panels)
 cbar_snap = fig.colorbar(im_snap, ax=axs[:, 2:4], location="bottom", shrink=0.8, extend="both")
-cbar_snap.set_label("v / (m s$^{1}$)")
+cbar_snap.set_label("v / (m s$^{-1}$)")
 
 # ax0 = ax[0].twinx()
 # ax0.plot(

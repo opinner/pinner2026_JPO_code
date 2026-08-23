@@ -114,7 +114,7 @@ for axis in ax.flatten():
     axis.xaxis.set_major_locator(locator)
     axis.xaxis.set_major_formatter(formatter)
 
-# colorbar below the first two columns (NIWs: wide + narrow panels)
+# colorbar below
 cbar_main = fig.colorbar(im_main, ax=ax, location="bottom", shrink=0.8, extend="max", aspect=50)
 cbar_main.set_label("current speed / (m s$^{-1}$)")
 
@@ -134,7 +134,7 @@ for axis in ax.flatten():
         color="k",
     )
 
-fig.get_layout_engine().set(rect=(0, 0, 0.95, 1))
+fig.get_layout_engine().set(rect=(0, 0, 0.95, 1))  # type: ignore
 
 # right-side supylabel-style label for the twin axes, mirroring fig.supylabel
 fig.text(

@@ -344,7 +344,7 @@ cc.plot_corr_with_error_bands(
     color=color,
 )  # , plot_errorbars=False)
 
-ax_remote_xc.plot([], [], label="inertial wind", color="#7fc97f")
+
 a = inertial_wind_at_C.iloc[8:]
 b = dissip_at_C.loc[: a.index[-1]]
 assert np.all(a.index == b.index)

@@ -224,7 +224,7 @@ for nr, mooring in enumerate(list_of_moorings):
     # else take the CATS prediction
     else:
         semidiurnal_barotropic_kinetic_energy = cats_semidiurnal_barotropic_energy_between_f_and_N
-        print(f"barotropic energy is taken from CATS model")
+        print("barotropic energy is taken from CATS model")
 
         # --------------------------------------------------------------------------------------------------
     # Calculate the wave energy per mooring, which is available for local dissipation

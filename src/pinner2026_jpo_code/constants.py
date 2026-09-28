@@ -6,7 +6,7 @@ def get_tidal_frequencies_in_hours(tide_type="semidiurnal"):
     # tidal_constit = {"M2": 12.42, "S2": 12.00, "N2":12.66}
     # the diurnal constituents, K1, O1, P1, Q1, and S1, with periods of 23.93, 25.82, 24.07, 26.87, and 24.00 h,
     # semidiurnal constituents M2, S2, N2, and S2, with periods of 12.42, 12.00, 12.66, and 11.97 h,
-    if tide_type == "Padman":
+    if tide_type.lower() == "padman":
         return {
             "M2": 12.42,
             "S2": 12.00,
@@ -20,10 +20,10 @@ def get_tidal_frequencies_in_hours(tide_type="semidiurnal"):
             "Mm": 661.31,
         }
 
-    if tide_type == "continuum":
+    if tide_type.lower() == "continuum":
         return {"M2": 12.42, "S2": 12.00, "N2": 12.66, "K2": 11.96, "3S2": 4, "4S2": 3}
 
-    elif tide_type == "semidiurnal":
+    elif tide_type.lower() == "semidiurnal":
         return {"M2": 12.42, "S2": 12.00, "N2": 12.66, "K2": 11.96}
 
     else:

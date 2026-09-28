@@ -3852,6 +3852,7 @@ dependencies = [
     { name = "spectrum" },
     { name = "tqdm" },
     { name = "typer" },
+    { name = "utide" },
     { name = "xarray", version = "2025.6.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
     { name = "xarray", version = "2026.4.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
 ]
@@ -3948,6 +3949,7 @@ requires-dist = [
     { name = "spectrum", specifier = ">=0.10.0" },
     { name = "tqdm" },
     { name = "typer" },
+    { name = "utide", specifier = ">=0.4.0" },
     { name = "xarray" },
 ]
 
@@ -6598,6 +6600,21 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz", hash = "sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed", size = 435556, upload-time = "2026-01-07T16:24:43.925Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/39/08/aaaad47bc4e9dc8c725e68f9d04865dbcb2052843ff09c97b08904852d84/urllib3-2.6.3-py3-none-any.whl", hash = "sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4", size = 131584, upload-time = "2026-01-07T16:24:42.685Z" },
+]
+
+[[package]]
+name = "utide"
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "numpy", version = "2.2.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "numpy", version = "2.4.4", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+    { name = "scipy", version = "1.15.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11'" },
+    { name = "scipy", version = "1.17.1", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11'" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/0c/4c/9ae7928fa16818363e1f25d720c1699a2310c6d0dc2862e653e86d238969/utide-0.4.0.tar.gz", hash = "sha256:5293fc10d52b37ff8092a2b99c20dbdd84b6a3e30dc8c013e28610491882ce55", size = 74946, upload-time = "2026-09-03T12:39:44.064Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/22/8e/59d4a03b5f647a00604d08e68c6d89ac7551228cc23fa7a80ee5adfedc15/utide-0.4.0-py3-none-any.whl", hash = "sha256:537949945f4ea54a0409f1de19b8af55d5105c2bbdb08b0d879f6dcdb82b1517", size = 75232, upload-time = "2026-09-03T12:39:42.365Z" },
 ]
 
 [[package]]

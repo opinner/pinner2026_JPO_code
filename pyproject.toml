@@ -41,6 +41,7 @@ dependencies = [
   "cartopy>=0.25.0",
   "spectrum>=0.10.0",
   "pytest-regressions>=2.11.0",
+  "utide>=0.4.0",
 ]
 
 

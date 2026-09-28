@@ -1815,6 +1815,7 @@ numpy==2.2.6 ; python_full_version < '3.11' \
     #   seaborn
     #   shapely
     #   spectrum
+    #   utide
     #   xarray
 numpy==2.4.4 ; python_full_version >= '3.11' \
     --hash=sha256:07077278157d02f65c43b1b26a3886bce886f95d20aabd11f87932750dfb14ed \
@@ -1901,6 +1902,7 @@ numpy==2.4.4 ; python_full_version >= '3.11' \
     #   seaborn
     #   shapely
     #   spectrum
+    #   utide
     #   xarray
 optional-django==0.1.0 \
     --hash=sha256:77d6b9fb74bda30583e1af4683a39e0af725cea6003252bba75838f4939326c5
@@ -3086,6 +3088,7 @@ scipy==1.15.3 ; python_full_version < '3.11' \
     # via
     #   pinner2026-jpo-code
     #   spectrum
+    #   utide
 scipy==1.17.1 ; python_full_version >= '3.11' \
     --hash=sha256:010f4333c96c9bb1a4516269e33cb5917b08ef2166d5556ca2fd9f082a9e6ea0 \
     --hash=sha256:02ae3b274fde71c5e92ac4d54bc06c42d80e399fec704383dcd99b301df37458 \
@@ -3151,6 +3154,7 @@ scipy==1.17.1 ; python_full_version >= '3.11' \
     # via
     #   pinner2026-jpo-code
     #   spectrum
+    #   utide
 seaborn==0.13.2 \
     --hash=sha256:636f8336facf092165e27924f223d3c62ca560b1f2bb5dff7ab7fad265361987 \
     --hash=sha256:93e60a40988f4d65e9f4885df477e2fdaff6b73a9ded434c1ab356dd57eefff7
@@ -3541,6 +3545,10 @@ urllib3==2.6.3 \
     --hash=sha256:1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed \
     --hash=sha256:bf272323e553dfb2e87d9bfd225ca7b0f467b919d7bbd355436d3fd37cb0acd4
     # via requests
+utide==0.4.0 \
+    --hash=sha256:5293fc10d52b37ff8092a2b99c20dbdd84b6a3e30dc8c013e28610491882ce55 \
+    --hash=sha256:537949945f4ea54a0409f1de19b8af55d5105c2bbdb08b0d879f6dcdb82b1517
+    # via pinner2026-jpo-code
 uvicorn==0.44.0 \
     --hash=sha256:6c942071b68f07e178264b9152f1f16dfac5da85880c4ce06366a96d70d4f31e \
     --hash=sha256:ce937c99a2cc70279556967274414c087888e8cec9f9c94644dfca11bd3ced89

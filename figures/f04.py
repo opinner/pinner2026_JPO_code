@@ -44,7 +44,7 @@ hke.index = pd.to_datetime(hke.index).floor("D")
 smoothed_hke = hke.apply(smooth, args=(5,))
 
 
-corr = smoothed_hke.corr(method="spearman")
+corr = smoothed_hke.corr(method="rank")
 # Generate a mask for the upper triangle
 mask = np.triu(np.ones_like(corr, dtype=bool))
 
@@ -93,7 +93,7 @@ fig.colorbar(
     extend="min",
     cax=cax,
     orientation="vertical",
-    label="Spearman correlation",
+    label="rank correlation",
     shrink=0.1,
 )
 
@@ -129,7 +129,7 @@ ax[0].text(
 # --------------------- ax 1 --------------------------------------
 
 masked_corr_df = corr.where(mask)  # mask to triagonal matrix
-masked_corr_df[np.eye(len(masked_corr_df), dtype=bool) == 1] = np.nan  # mask diagonal
+masked_corr_df[np.eye(len(masked_corr_df), dtype=bool)] = np.nan  # mask diagonal
 
 mooring_info = pd.read_csv(INTERIM_DATA_DIR / "rcm_infos.csv", index_col=0)
 
@@ -170,7 +170,7 @@ ax[1].scatter(
 )
 
 ax[1].set_xlabel("distance between measurements / km")
-ax[1].set_ylabel("Spearman correlation")
+ax[1].set_ylabel("rank correlation")
 
 # --------------------- saving --------------------------------------
 

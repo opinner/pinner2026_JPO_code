@@ -64,7 +64,7 @@ discrete_cmap = mcolors.LinearSegmentedColormap.from_list(
 fig, ax = plt.subplots(
     ncols=2,
     sharex=True,
-    figsize=(TWO_COLUMN_WIDTH, TWO_COLUMN_WIDTH / GOLDEN_RATIO),
+    figsize=(TWO_COLUMN_WIDTH, TWO_COLUMN_WIDTH / 3),
     layout="constrained",
 )
 for axis in ax:
@@ -149,7 +149,7 @@ def connect_y_range(ax_left, ax_right, **kwargs):
 
 ax[0].set_ylim(-0.1e-3, 4.3e-3)
 ax[1].set_ylim(0.05e-3, 1.61e-3)
-connect_y_range(ax[0], ax[1], color="k", lw=1)
+connect_y_range(ax[0], ax[1], color="lightgray", lw=1)
 
 fig.savefig(FIGURE_DIR / "f03_HKE_timeseries.pdf")
 # plt.show()

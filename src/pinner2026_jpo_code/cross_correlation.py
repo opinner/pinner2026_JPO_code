@@ -10,7 +10,7 @@ def get_normalized_crosscorr(a, b):
     n = len(a)
 
     lags = signal.correlation_lags(len(a), len(b), mode="same")
-    c = signal.correlate(a - a.mean(), b - b.mean(), "same") / (np.std(a * np.std(b)))
+    c = signal.correlate(a - a.mean(), b - b.mean(), "same") / (np.std(a) * np.std(b))
     cross_correlation = c / n
     return lags, cross_correlation
 

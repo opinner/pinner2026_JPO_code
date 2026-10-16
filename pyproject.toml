@@ -42,6 +42,9 @@ dependencies = [
   "spectrum>=0.10.0",
   "pytest-regressions>=2.11.0",
   "utide>=0.4.0",
+  "pyhdf>=0.11.7",
+  "rioxarray>=0.19.0",
+  "zarr>=2.18.3",
 ]
 
 

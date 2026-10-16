@@ -146,22 +146,22 @@ mooring_info = pd.concat([mooring_info.iloc[:6], line, mooring_info.iloc[6:]]).r
 coords = list(zip(mooring_info["lat"], mooring_info["lon"], strict=True))
 n = len(coords)
 
-dist = np.zeros((n, n))
+distance = np.zeros((n, n))
 for i in range(n):
     for j in range(i + 1, n):
         d = geopy.distance.great_circle(coords[i], coords[j]).km
-        dist[i, j] = dist[j, i] = d
+        distance[i, j] = distance[j, i] = d
 
-dist_df = pd.DataFrame(dist, index=mooring_info["name"], columns=mooring_info["name"])
+distance_df = pd.DataFrame(distance, index=mooring_info["name"], columns=mooring_info["name"])
 
-assert dist_df.shape == corr.shape
-dist_list = dist_df.to_numpy().flatten()
+assert distance_df.shape == corr.shape
+distance_list = distance_df.to_numpy().flatten()
 corr_list = masked_corr_df.to_numpy().flatten()
-assert np.shape(dist_list) == np.shape(corr_list)
+assert np.shape(distance_list) == np.shape(corr_list)
 
 colors = np.where(corr_list <= 0.4, "lightgray", "tab:blue")
 ax[1].scatter(
-    dist_list,
+    distance_list,
     corr_list,
     c=corr_list,
     norm=norm,

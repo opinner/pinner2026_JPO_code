@@ -21,5 +21,12 @@
       "affiliation": "Alfred Wegener Institute, Helmholtz Centre for Polar and Marine Research (AWI)",
       "orcid": "0000-0002-4314-6232"
     }
-  ]
+  ],
+    "related_identifiers": [
+    {
+            "scheme": "url",
+            "identifier": "https://github.com/opinner/pinner2026_JPO_code",
+            "relation": "isDerivedFrom"
+        }
+    ]
 }

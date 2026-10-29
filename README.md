@@ -30,11 +30,6 @@ git clone https://github.com/opinner/pinner2026_JPO_code
 > Same calculations have been done in an HPC environment. Even though the scripts are included here, they will most likely not run in the local environment.
 
 
-
-## Author & Maintainer
-
-- [opinner](https://github.com/opinner)
-
 ## Contact & Issues
 
 For any questions or issues, please contact me via ole.pinner@awi.de or open an [issue](https://github.com/opinner/pinner2026_JPO_code/issues).

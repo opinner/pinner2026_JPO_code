@@ -22,16 +22,4 @@
       "orcid": "0000-0002-4314-6232"
     }
   ],
-  "related_identifiers": [
-    {
-            "scheme": "doi",
-            "identifier": "",
-            "relation": "isSupplementTo"
-        },
-    {
-            "scheme": "url",
-            "identifier": "https://github.com/opinner/pinner2026_JPO_code",
-            "relation": "isDerivedFrom"
-        }
-    ]
 }
